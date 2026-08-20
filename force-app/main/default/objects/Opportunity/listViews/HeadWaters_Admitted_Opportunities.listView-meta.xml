@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HeadWaters_Admitted_Opportunities</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>Admitted_Date__c</columns>
+    <columns>Estimated_Discharge_Date__c</columns>
+    <columns>Assigned_Proteam__c</columns>
+    <columns>Identified__c</columns>
+    <columns>Sunwave_MRI_OBHFL__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Facility_Approved__c</field>
+        <operation>equals</operation>
+        <value>HeadWaters</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Admitted</value>
+    </filters>
+    <label>HeadWaters Admitted Opportunities</label>
+</ListView>

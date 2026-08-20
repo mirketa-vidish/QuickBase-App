@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Admission_Pending</fullName>
+    <active>true</active>
+    <description>Admission Pending stage must have projected admission date</description>
+    <errorConditionFormula>IF(AND(ISCHANGED(StageName),ISPICKVAL(StageName, &apos;Admission Pending&apos;)),
+ISBLANK(TEXT(Projected_Admission_Date_and_Time__c)),false)</errorConditionFormula>
+    <errorMessage>Please add projected admission date and time to update to Admission Pending</errorMessage>
+</ValidationRule>

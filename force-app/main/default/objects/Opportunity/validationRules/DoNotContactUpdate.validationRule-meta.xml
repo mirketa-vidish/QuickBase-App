@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DoNotContactUpdate</fullName>
+    <active>false</active>
+    <errorConditionFormula>OR(AND( Do_Not_Contact__c =True,Account.Do_Not_Contact__pc=False),AND( Do_Not_Contact__c =False,Account.Do_Not_Contact__pc=True))</errorConditionFormula>
+    <errorMessage>You cannot uncheck &quot;Do Not Contact&quot; on Opportunity. Please make this change on Account.</errorMessage>
+</ValidationRule>

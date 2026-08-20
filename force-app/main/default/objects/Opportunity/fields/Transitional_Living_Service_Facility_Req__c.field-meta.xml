@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transitional_Living_Service_Facility_Req__c</fullName>
+    <label>Transitional Living Service Facility Req</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Windhaven House</fullName>
+                <default>false</default>
+                <label>Windhaven House</label>
+            </value>
+            <value>
+                <fullName>West Palm Beach Transitional Living</fullName>
+                <default>false</default>
+                <label>West Palm Beach Transitional Living</label>
+            </value>
+            <value>
+                <fullName>West Palm Beach MH Transitional Living</fullName>
+                <default>false</default>
+                <label>West Palm Beach MH Transitional Living</label>
+            </value>
+            <value>
+                <fullName>South Padre Island Transitional Living</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>South Padre Island Transitional Living</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

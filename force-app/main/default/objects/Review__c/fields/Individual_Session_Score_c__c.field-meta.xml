@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Individual_Session_Score_c__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(
+    TEXT(Individual_Session__c),
+    &apos;Compliance&apos;, 100,
+    &apos;Partial Compliance&apos;, 50,
+    &apos;Non-Compliance&apos;, 0,
+    null
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Individual_Session_Score__c</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

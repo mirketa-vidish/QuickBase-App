@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Relationship_Specific__c</fullName>
+    <label>Relationship Specific</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Attorney</fullName>
+                <default>false</default>
+                <label>Attorney</label>
+            </value>
+            <value>
+                <fullName>Aunt</fullName>
+                <default>false</default>
+                <label>Aunt</label>
+            </value>
+            <value>
+                <fullName>Boyfriend</fullName>
+                <default>false</default>
+                <label>Boyfriend</label>
+            </value>
+            <value>
+                <fullName>Brother</fullName>
+                <default>false</default>
+                <label>Brother</label>
+            </value>
+            <value>
+                <fullName>Brother in Law</fullName>
+                <default>false</default>
+                <label>Brother in Law</label>
+            </value>
+            <value>
+                <fullName>Case Worker</fullName>
+                <default>false</default>
+                <label>Case Worker</label>
+            </value>
+            <value>
+                <fullName>Cousin</fullName>
+                <default>false</default>
+                <label>Cousin</label>
+            </value>
+            <value>
+                <fullName>Daughter</fullName>
+                <default>false</default>
+                <label>Daughter</label>
+            </value>
+            <value>
+                <fullName>Daughter-in-law</fullName>
+                <default>false</default>
+                <label>Daughter-in-law</label>
+            </value>
+            <value>
+                <fullName>Doctor</fullName>
+                <default>false</default>
+                <label>Doctor</label>
+            </value>
+            <value>
+                <fullName>Employer</fullName>
+                <default>false</default>
+                <label>Employer</label>
+            </value>
+            <value>
+                <fullName>Ex-Husband</fullName>
+                <default>false</default>
+                <label>Ex-Husband</label>
+            </value>
+            <value>
+                <fullName>Ex-Wife</fullName>
+                <default>false</default>
+                <label>Ex-Wife</label>
+            </value>
+            <value>
+                <fullName>Father</fullName>
+                <default>false</default>
+                <label>Father</label>
+            </value>
+            <value>
+                <fullName>Father-in-law</fullName>
+                <default>false</default>
+                <label>Father-in-law</label>
+            </value>
+            <value>
+                <fullName>Financial Advisor</fullName>
+                <default>false</default>
+                <label>Financial Advisor</label>
+            </value>
+            <value>
+                <fullName>Friend</fullName>
+                <default>false</default>
+                <label>Friend</label>
+            </value>
+            <value>
+                <fullName>Girlfriend</fullName>
+                <default>false</default>
+                <label>Girlfriend</label>
+            </value>
+            <value>
+                <fullName>Grandfather</fullName>
+                <default>false</default>
+                <label>Grandfather</label>
+            </value>
+            <value>
+                <fullName>Grandmother</fullName>
+                <default>false</default>
+                <label>Grandmother</label>
+            </value>
+            <value>
+                <fullName>Guardian</fullName>
+                <default>false</default>
+                <label>Guardian</label>
+            </value>
+            <value>
+                <fullName>Human Resources</fullName>
+                <default>false</default>
+                <label>Human Resources</label>
+            </value>
+            <value>
+                <fullName>Husband</fullName>
+                <default>false</default>
+                <label>Husband</label>
+            </value>
+            <value>
+                <fullName>Interventionist</fullName>
+                <default>false</default>
+                <label>Interventionist</label>
+            </value>
+            <value>
+                <fullName>Mother</fullName>
+                <default>false</default>
+                <label>Mother</label>
+            </value>
+            <value>
+                <fullName>Mother-in-law</fullName>
+                <default>false</default>
+                <label>Mother-in-law</label>
+            </value>
+            <value>
+                <fullName>Nephew</fullName>
+                <default>false</default>
+                <label>Nephew</label>
+            </value>
+            <value>
+                <fullName>Niece</fullName>
+                <default>false</default>
+                <label>Niece</label>
+            </value>
+            <value>
+                <fullName>OBH Alumni Care</fullName>
+                <default>false</default>
+                <label>OBH Alumni Care</label>
+            </value>
+            <value>
+                <fullName>OBH Clinical</fullName>
+                <default>false</default>
+                <label>OBH Clinical</label>
+            </value>
+            <value>
+                <fullName>OBH Employee</fullName>
+                <default>false</default>
+                <label>OBH Employee</label>
+            </value>
+            <value>
+                <fullName>PRO</fullName>
+                <default>false</default>
+                <label>OBH PRO</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>PCP</fullName>
+                <default>false</default>
+                <label>PCP</label>
+            </value>
+            <value>
+                <fullName>Psychiatrist</fullName>
+                <default>false</default>
+                <label>Psychiatrist</label>
+            </value>
+            <value>
+                <fullName>Psychologist</fullName>
+                <default>false</default>
+                <label>Psychologist</label>
+            </value>
+            <value>
+                <fullName>Self</fullName>
+                <default>false</default>
+                <label>Self</label>
+            </value>
+            <value>
+                <fullName>Seminole Tribe of Florida</fullName>
+                <default>false</default>
+                <label>Seminole Tribe of Florida</label>
+            </value>
+            <value>
+                <fullName>Significant Other</fullName>
+                <default>false</default>
+                <label>Significant Other</label>
+            </value>
+            <value>
+                <fullName>Sister</fullName>
+                <default>false</default>
+                <label>Sister</label>
+            </value>
+            <value>
+                <fullName>Sister-in-Law</fullName>
+                <default>false</default>
+                <label>Sister-in-Law</label>
+            </value>
+            <value>
+                <fullName>Sober Home</fullName>
+                <default>false</default>
+                <label>Sober Home</label>
+            </value>
+            <value>
+                <fullName>Sober Transport</fullName>
+                <default>false</default>
+                <label>Sober Transport</label>
+            </value>
+            <value>
+                <fullName>Son</fullName>
+                <default>false</default>
+                <label>Son</label>
+            </value>
+            <value>
+                <fullName>Son-in-law</fullName>
+                <default>false</default>
+                <label>Son-in-law</label>
+            </value>
+            <value>
+                <fullName>Therapist</fullName>
+                <default>false</default>
+                <label>Therapist</label>
+            </value>
+            <value>
+                <fullName>Uncle</fullName>
+                <default>false</default>
+                <label>Uncle</label>
+            </value>
+            <value>
+                <fullName>Wife</fullName>
+                <default>false</default>
+                <label>Wife</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

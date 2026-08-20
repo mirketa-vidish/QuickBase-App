@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PRO_My_Opportunities</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>Assigned_Proteam__c</columns>
+    <columns>Referent__c</columns>
+    <columns>Projected_Admission_Date_and_Time__c</columns>
+    <columns>Facility_Approved__c</columns>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Assigned_PRO_Logged_in__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>PRO My Opportunities</label>
+</ListView>

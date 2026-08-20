@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>reasonofdeniel</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(AND(ISCHANGED(StageName),ISPICKVAL(StageName, &apos;Closed Referred Out&apos;)),
+
+ISBLANK(TEXT(Reason_for_deniel__c)),false)</errorConditionFormula>
+    <errorMessage>Please Enter &quot;Reason of Closed Refer Out&quot;</errorMessage>
+</ValidationRule>

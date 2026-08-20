@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Admitted_Florida</fullName>
+    <columns>Assigned_Proteam__c</columns>
+    <columns>Referent__c</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>Admitted_Date__c</columns>
+    <columns>Facility_Approved__c</columns>
+    <columns>Referral_Information__c</columns>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <columns>Sigmund_MRN__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Admitted_Date__c</field>
+        <operation>greaterThan</operation>
+        <value>12/1/2019</value>
+    </filters>
+    <filters>
+        <field>Facility_Approved__c</field>
+        <operation>notEqual</operation>
+        <value>Hannah’s House,Origins Counseling,Origins Recovery Center,Origins Counseling Mental Health Services,Origins Counseling - Mental Health,Restored Path Detox</value>
+    </filters>
+    <filters>
+        <field>Assigned_Proteam__c</field>
+        <operation>equals</operation>
+        <value>Rick Hubbard</value>
+    </filters>
+    <label>Admitted Florida</label>
+</ListView>

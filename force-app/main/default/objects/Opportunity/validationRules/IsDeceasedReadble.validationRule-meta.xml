@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsDeceasedReadble</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Account.Is_Deceased__pc=False,Is_Deceased__c =true)</errorConditionFormula>
+    <errorMessage>You can&apos;t Mark Patient as &quot;Is Deceased&quot; on Opportunity,Please mark it on Account</errorMessage>
+</ValidationRule>

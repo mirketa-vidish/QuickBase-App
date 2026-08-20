@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Supervisor__c</fullName>
+    <label>Supervisor</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Alison Watros</fullName>
+                <default>false</default>
+                <label>Alison Watros</label>
+            </value>
+            <value>
+                <fullName>Amber Wrye</fullName>
+                <default>false</default>
+                <label>Amber Wrye</label>
+            </value>
+            <value>
+                <fullName>Anna Lisa DeLima</fullName>
+                <default>false</default>
+                <label>Anna Lisa DeLima</label>
+            </value>
+            <value>
+                <fullName>Barbara Parchment</fullName>
+                <default>false</default>
+                <label>Barbara Parchment</label>
+            </value>
+            <value>
+                <fullName>Blaise Amendolace</fullName>
+                <default>false</default>
+                <label>Blaise Amendolace</label>
+            </value>
+            <value>
+                <fullName>Cara Bantom-O&apos;Neill</fullName>
+                <default>false</default>
+                <label>Cara Bantom-O&apos;Neill</label>
+            </value>
+            <value>
+                <fullName>David Tejeda</fullName>
+                <default>false</default>
+                <label>David Tejeda</label>
+            </value>
+            <value>
+                <fullName>Deb Kuzmin</fullName>
+                <default>false</default>
+                <label>Deb Kuzmin</label>
+            </value>
+            <value>
+                <fullName>Eulices Montiel-Fernandez</fullName>
+                <default>false</default>
+                <label>Eulices Montiel-Fernandez</label>
+            </value>
+            <value>
+                <fullName>Heather Howard</fullName>
+                <default>false</default>
+                <label>Heather Howard</label>
+            </value>
+            <value>
+                <fullName>Ingrid VanAlstyne</fullName>
+                <default>false</default>
+                <label>Ingrid VanAlstyne</label>
+            </value>
+            <value>
+                <fullName>Jennifer Pinkerton</fullName>
+                <default>false</default>
+                <label>Jennifer Pinkerton</label>
+            </value>
+            <value>
+                <fullName>John Dyben</fullName>
+                <default>false</default>
+                <label>John Dyben</label>
+            </value>
+            <value>
+                <fullName>Joshua Love</fullName>
+                <default>false</default>
+                <label>Joshua Love</label>
+            </value>
+            <value>
+                <fullName>Kaisha Thomas</fullName>
+                <default>false</default>
+                <label>Kaisha Thomas</label>
+            </value>
+            <value>
+                <fullName>Laura Golden</fullName>
+                <default>false</default>
+                <label>Laura Golden</label>
+            </value>
+            <value>
+                <fullName>Melanie Dinardo</fullName>
+                <default>false</default>
+                <label>Melanie Dinardo</label>
+            </value>
+            <value>
+                <fullName>Molly Williams</fullName>
+                <default>false</default>
+                <label>Molly Williams</label>
+            </value>
+            <value>
+                <fullName>Samantha Beyer</fullName>
+                <default>false</default>
+                <label>Samantha Beyer</label>
+            </value>
+            <value>
+                <fullName>Sandra Betancourt</fullName>
+                <default>false</default>
+                <label>Sandra Betancourt</label>
+            </value>
+            <value>
+                <fullName>Scott Vandenburg</fullName>
+                <default>false</default>
+                <label>Scott Vandenburg</label>
+            </value>
+            <value>
+                <fullName>Shea Barakatt</fullName>
+                <default>false</default>
+                <label>Shea Barakatt</label>
+            </value>
+            <value>
+                <fullName>Stacy Grossman</fullName>
+                <default>false</default>
+                <label>Stacy Grossman</label>
+            </value>
+            <value>
+                <fullName>Stephanie Avery</fullName>
+                <default>false</default>
+                <label>Stephanie Avery</label>
+            </value>
+            <value>
+                <fullName>Stephen Honaker</fullName>
+                <default>false</default>
+                <label>Stephen Honaker</label>
+            </value>
+            <value>
+                <fullName>Suzanne Sherwood</fullName>
+                <default>false</default>
+                <label>Suzanne Sherwood</label>
+            </value>
+            <value>
+                <fullName>Tommy McGee</fullName>
+                <default>false</default>
+                <label>Tommy McGee</label>
+            </value>
+            <value>
+                <fullName>Vanessa Brenner</fullName>
+                <default>false</default>
+                <label>Vanessa Brenner</label>
+            </value>
+            <value>
+                <fullName>Vidya Nair</fullName>
+                <default>false</default>
+                <label>Vidya Nair</label>
+            </value>
+            <value>
+                <fullName>Weston Probst</fullName>
+                <default>false</default>
+                <label>Weston Probst</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

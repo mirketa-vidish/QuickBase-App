@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reason_for_deniel__c</fullName>
+    <label>Reason for Refer Out</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Can’t meet patient responsibility – needs in network</fullName>
+                <default>false</default>
+                <label>Can’t meet patient responsibility – needs in network</label>
+            </value>
+            <value>
+                <fullName>Clinically denied – needs adolescent provider</fullName>
+                <default>false</default>
+                <label>Clinically denied – needs adolescent provider</label>
+            </value>
+            <value>
+                <fullName>Clinically denied – needs eating disorder primary provider</fullName>
+                <default>false</default>
+                <label>Clinically denied – needs eating disorder primary provider</label>
+            </value>
+            <value>
+                <fullName>Clinically denied –needs psychiatric primary provider</fullName>
+                <default>false</default>
+                <label>Clinically denied –needs psychiatric primary provider</label>
+            </value>
+            <value>
+                <fullName>Financial - No out of network benefits – needs in network</fullName>
+                <default>false</default>
+                <label>Financial - No out of network benefits – needs in network</label>
+            </value>
+            <value>
+                <fullName>Medically denied – needs a higher level of care</fullName>
+                <default>false</default>
+                <label>Medically denied – needs a higher level of care</label>
+            </value>
+            <value>
+                <fullName>No SUD as primary diagnosis</fullName>
+                <default>false</default>
+                <label>No SUD as primary diagnosis</label>
+            </value>
+            <value>
+                <fullName>Attempting Lower Level of Care</fullName>
+                <default>false</default>
+                <label>Attempting Lower Level of Care</label>
+            </value>
+            <value>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+                <label>Other - See Notes</label>
+            </value>
+            <value>
+                <fullName>HC Program Full</fullName>
+                <default>false</default>
+                <label>HC Program Full</label>
+            </value>
+            <value>
+                <fullName>Refusing LOS</fullName>
+                <default>false</default>
+                <label>Refusing LOS</label>
+            </value>
+            <value>
+                <fullName>Medicare/Medicaid Only</fullName>
+                <default>false</default>
+                <label>Medicare/Medicaid Only</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

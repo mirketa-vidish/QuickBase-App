@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TreatmentServiceFacilityRequested</fullName>
+    <active>false</active>
+    <errorConditionFormula>if(RecordType.Name=&apos;Treatment Opportunity&apos;,
+AND(Is_Deceased__c =false, ISBLANK(TEXT(Facility_requested__c ))),AND(Is_Deceased__c=false,ISBLANK(TEXT( Transitional_Living_Service_Facility_Req__c))))</errorConditionFormula>
+    <errorDisplayField>AccountId</errorDisplayField>
+    <errorMessage>Please Fill &quot;Treatment Service Facility Requested/Transitional Living Service Facility Requested&quot;</errorMessage>
+</ValidationRule>

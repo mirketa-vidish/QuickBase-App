@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Facility_Approved__c</fullName>
+    <label>Admitted Treatment Service Facility</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Anticipated_Realm__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Hanley Center</fullName>
+                <default>false</default>
+                <label>Hanley Center</label>
+            </value>
+            <value>
+                <fullName>Hanley Center Counseling</fullName>
+                <default>false</default>
+                <label>Hanley Center Counseling</label>
+            </value>
+            <value>
+                <fullName>Hanley Center - Mental Health</fullName>
+                <default>false</default>
+                <label>Hanley Center - Mental Health</label>
+            </value>
+            <value>
+                <fullName>Hanley Center - Mental Health Outpatient</fullName>
+                <default>false</default>
+                <label>Hanley Center - Mental Health Outpatient</label>
+            </value>
+            <value>
+                <fullName>HeadWaters</fullName>
+                <default>false</default>
+                <label>HeadWaters</label>
+            </value>
+            <value>
+                <fullName>Hannah’s House</fullName>
+                <default>false</default>
+                <label>Hannah’s House</label>
+            </value>
+            <value>
+                <fullName>Origins Recovery Center</fullName>
+                <default>false</default>
+                <label>Origins Recovery Center</label>
+            </value>
+            <value>
+                <fullName>Origins Counseling Mental Health Services</fullName>
+                <default>false</default>
+                <label>Origins Counseling Mental Health Services</label>
+            </value>
+            <value>
+                <fullName>Restored Path Detox</fullName>
+                <default>false</default>
+                <label>Restored Path Detox</label>
+            </value>
+            <value>
+                <fullName>Origins Counseling - Harlingen</fullName>
+                <default>false</default>
+                <label>Origins Counseling - Harlingen</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Origins Recovery of Texas, LLC</controllingFieldValue>
+            <valueName>Hannah’s House</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Origins Recovery of Texas, LLC</controllingFieldValue>
+            <valueName>Origins Recovery Center</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Origins Counseling, LLC</controllingFieldValue>
+            <valueName>Origins Counseling - Harlingen</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Origins Counseling Mental Health Services</controllingFieldValue>
+            <valueName>Origins Counseling Mental Health Services</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Origins Behavioral HealthCare of Florida, LLC</controllingFieldValue>
+            <valueName>Hanley Center</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Origins Behavioral HealthCare of Florida, LLC</controllingFieldValue>
+            <valueName>Hanley Center Counseling</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Origins Behavioral HealthCare of Florida, LLC</controllingFieldValue>
+            <valueName>Hanley Center - Mental Health</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Origins Behavioral HealthCare of Florida, LLC</controllingFieldValue>
+            <valueName>Hanley Center - Mental Health Outpatient</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Origins Behavioral HealthCare of Florida, LLC</controllingFieldValue>
+            <valueName>HeadWaters</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

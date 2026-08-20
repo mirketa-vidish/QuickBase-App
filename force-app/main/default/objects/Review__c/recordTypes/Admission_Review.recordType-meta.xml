@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Admission_Review</fullName>
+    <active>true</active>
+    <label>Admission Review</label>
+    <picklistValues>
+        <picklist>ASAM_LOCUS__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Admissions_Agreement__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Biopsychosocial__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>CSSR_S__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Consent_to_Treat__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Detox_Treatment_Plan__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Discharge_Summary__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Family_Session__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Group_Session__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>H_P_within_24hrs__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Individual_Session__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Initial_Nursing_Assessment__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Intake_Assessment__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Master_Treatment_Plan__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Pre_Admission_Assessment__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Psychiatric_Evaluation__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Supervisor__c</picklist>
+        <values>
+            <fullName>Alison Watros</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Amber Wrye</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Anna Lisa DeLima</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Barbara Parchment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Blaise Amendolace</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cara Bantom-O%27Neill</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>David Tejeda</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deb Kuzmin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Eulices Montiel-Fernandez</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Heather Howard</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ingrid VanAlstyne</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jennifer Pinkerton</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>John Dyben</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joshua Love</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kaisha Thomas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Laura Golden</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Melanie Dinardo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Molly Williams</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Samantha Beyer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sandra Betancourt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Scott Vandenburg</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shea Barakatt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stacy Grossman</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stephanie Avery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stephen Honaker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Suzanne Sherwood</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tommy McGee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vanessa Brenner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vidya Nair</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Weston Probst</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Transfer_Note__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Treatment_Plan_Review__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>UDS_at_Admission__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Weekly_Visit__c</picklist>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Non-Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

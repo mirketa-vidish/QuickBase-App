@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PrivatePay_And_HasInsurance</fullName>
+    <active>true</active>
+    <description>If patient is Private Pay should not have has insurance or in network checked</description>
+    <errorConditionFormula>AND (RecordType.Name= &quot;Treatment Opportunity&quot; , Private_Pay__c= True , Has_Insurance__c = True) ||
+AND(RecordType.Name= &quot;Treatment Opportunity&quot; , Private_Pay__c = True , In_Network__c = True)</errorConditionFormula>
+    <errorMessage>Patient can not be private pay and insurance</errorMessage>
+</ValidationRule>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Admitted_Opportunities_MTD_MB_s_View</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>Admitted_Date__c</columns>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <columns>Facility_Approved__c</columns>
+    <columns>Program__c</columns>
+    <columns>OPPORTUNITY.LEAD_SOURCE</columns>
+    <columns>IBP__IfbyphoneCallId__c</columns>
+    <columns>Referral_Information__c</columns>
+    <columns>Referent__c</columns>
+    <columns>Referent_Organisation__c</columns>
+    <columns>Assigned_Proteam__c</columns>
+    <columns>Age__c</columns>
+    <columns>City__c</columns>
+    <columns>State__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Admitted,Alumni-Discharged</value>
+    </filters>
+    <filters>
+        <field>Admitted_Date__c</field>
+        <operation>greaterThan</operation>
+        <value>12/1/2019</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.FULL_NAME</field>
+        <operation>notEqual</operation>
+        <value>Caroline Collins</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.FULL_NAME</field>
+        <operation>notEqual</operation>
+        <value>Salesforce Data Admin</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.FULL_NAME</field>
+        <operation>notEqual</operation>
+        <value>Ashley Barr</value>
+    </filters>
+    <filters>
+        <field>Admitted_Transitional_Living_Facility__c</field>
+        <operation>notEqual</operation>
+        <value>Greenwood Houses,Headwaters House,Windhaven House,MH Greenwood House</value>
+    </filters>
+    <label>Admitted Opportunities - MB&apos;s View</label>
+    <sharedTo>
+        <role>Admission_Specialist</role>
+        <role>Alumni_Care_Coordinator</role>
+    </sharedTo>
+</ListView>

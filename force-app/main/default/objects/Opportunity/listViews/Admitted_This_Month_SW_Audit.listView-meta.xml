@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Admitted_This_Month_SW_Audit</fullName>
+    <columns>Admitted_Date__c</columns>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Sunwave_Account_ID__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>Facility_Approved__c</columns>
+    <columns>Program__c</columns>
+    <columns>Assigned_Proteam__c</columns>
+    <columns>Referral_Information__c</columns>
+    <columns>Referent__c</columns>
+    <columns>Estimated_Discharge_Date__c</columns>
+    <columns>Referent_Organisation__c</columns>
+    <columns>OPPORTUNITY.LEAD_SOURCE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Admitted_Date__c</field>
+        <operation>equals</operation>
+        <value>THIS_MONTH</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Admitted,Alumni-Discharged</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.FULL_NAME</field>
+        <operation>notEqual</operation>
+        <value>mirketa admin,caroline collins,leila salera</value>
+    </filters>
+    <label>Admitted This Month SW Audit</label>
+</ListView>

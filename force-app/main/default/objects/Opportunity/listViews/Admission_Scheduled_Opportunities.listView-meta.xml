@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Admission_Scheduled_Opportunities</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <columns>Facility_Approved__c</columns>
+    <columns>Projected_Admission_Date_and_Time__c</columns>
+    <columns>OPPORTUNITY.LEAD_SOURCE</columns>
+    <columns>Insurance_Provider__c</columns>
+    <columns>Referent__c</columns>
+    <columns>Assigned_Proteam__c</columns>
+    <columns>Caller_Email__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>Admitted_Transitional_Living_Facility__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Admission Scheduled</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.FULL_NAME</field>
+        <operation>notEqual</operation>
+        <value>leila salera,caroline collins,mirketa admin,Offprem MCC_Integration_Origins</value>
+    </filters>
+    <label>Admission Scheduled Opportunities</label>
+</ListView>

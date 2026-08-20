@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Discharged_Treatment_Service_Facility__c</fullName>
+    <label>Discharged Treatment Service Facility</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Hanley Center</fullName>
+                <default>false</default>
+                <label>Hanley Center</label>
+            </value>
+            <value>
+                <fullName>Hanley Center Counseling</fullName>
+                <default>false</default>
+                <label>Hanley Center Counseling</label>
+            </value>
+            <value>
+                <fullName>Hanley Center - Mental Health</fullName>
+                <default>false</default>
+                <label>Hanley Center - Mental Health</label>
+            </value>
+            <value>
+                <fullName>Hanley Center - Mental Health Outpatient</fullName>
+                <default>false</default>
+                <label>Hanley Center - Mental Health Outpatient</label>
+            </value>
+            <value>
+                <fullName>HeadWaters</fullName>
+                <default>false</default>
+                <label>HeadWaters</label>
+            </value>
+            <value>
+                <fullName>Hannah&apos;s House</fullName>
+                <default>false</default>
+                <label>Hannah&apos;s House</label>
+            </value>
+            <value>
+                <fullName>Origins Counseling</fullName>
+                <default>false</default>
+                <label>Origins Counseling</label>
+            </value>
+            <value>
+                <fullName>Origins Counseling - Mental Health</fullName>
+                <default>false</default>
+                <label>Origins Counseling - Mental Health</label>
+            </value>
+            <value>
+                <fullName>Origins Recovery Center</fullName>
+                <default>false</default>
+                <label>Origins Recovery Center</label>
+            </value>
+            <value>
+                <fullName>Origins Recovery of Texas Counseling</fullName>
+                <default>false</default>
+                <label>Origins Recovery of Texas Counseling</label>
+            </value>
+            <value>
+                <fullName>Origins Counseling - Harlingen</fullName>
+                <default>false</default>
+                <label>Origins Counseling - Harlingen</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

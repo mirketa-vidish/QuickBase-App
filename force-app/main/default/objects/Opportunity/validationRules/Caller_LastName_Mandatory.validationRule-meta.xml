@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Caller_LastName_Mandatory</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( ISCHANGED(StageName),
+ISPICKVAL(StageName, &quot;Admission Scheduled&quot;),
+ISBLANK(  Caller_Last_Name__c )
+)</errorConditionFormula>
+    <errorDisplayField>Caller_Last_Name__c</errorDisplayField>
+    <errorMessage>Please Provide Caller LastName</errorMessage>
+</ValidationRule>

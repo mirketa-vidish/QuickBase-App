@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Client_DOB__c</fullName>
+    <inlineHelpText>You can&apos;t edit the patient’s &quot;Date of Birth&quot; on Opportunity. Please make changes on the Account.</inlineHelpText>
+    <label>Patient DOB</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

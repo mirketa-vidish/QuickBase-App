@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Admitted_Treatment_Realm</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(RecordType.Name=&apos;Treatment Opportunity&apos;, AND( ISCHANGED(StageName),
+ISPICKVAL(StageName, &quot;Admission Scheduled&quot;),
+ISBLANK(TEXT(Anticipated_Realm__c))
+),false)</errorConditionFormula>
+    <errorDisplayField>Anticipated_Realm__c</errorDisplayField>
+    <errorMessage>Please Provide Admitted Treatment Realm</errorMessage>
+</ValidationRule>

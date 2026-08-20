@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Admitted_opportunities_in_ORC</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Facility_Approved__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Admitted</value>
+    </filters>
+    <filters>
+        <field>Facility_Approved__c</field>
+        <operation>equals</operation>
+        <value>Origins Recovery Center</value>
+    </filters>
+    <label>Admitted opportunities in ORC</label>
+    <sharedTo>
+        <role>Alumni_Care_Coordinator</role>
+        <role>Regional_Director_of_Alumni_Services</role>
+        <role>Senior_Director_of_Marketing_and_Alumni</role>
+    </sharedTo>
+</ListView>

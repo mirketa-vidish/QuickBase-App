@@ -1,0 +1,151 @@
+<template>
+    <lightning-card title="Admissions" icon-name="standard:opportunity">
+        <div slot="actions">
+            <lightning-button-icon
+                icon-name="utility:filterList"
+                alternative-text="Toggle Filters"
+                title="Toggle Filters"
+                variant={filterIconVariant}
+                onclick={toggleFilters}>
+            </lightning-button-icon>
+        </div>
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+        </template>
+
+        <template if:true={errorMessage}>
+            <div class="slds-p-around_small slds-text-color_error">{errorMessage}</div>
+        </template>
+
+        <div class="slds-scrollable_x table-container">
+            <table class="slds-table slds-table_bordered slds-table_fixed-layout slds-table_striped admissions-table">
+                <thead>
+                    <tr class="table-header-row">
+                        <th class="slds-text-align_center action-col"><div class="slds-truncate">Actions</div></th>
+                        <th onclick={handleSort} data-field="admissionId"><div class="slds-truncate">Admission ID</div></th>
+                        <th onclick={handleSort} data-field="mbcId"><div class="slds-truncate">MBC ID</div></th>
+                        <th onclick={handleSort} data-field="admissionDate"><div class="slds-truncate">Admission Date</div></th>
+                        <th onclick={handleSort} data-field="dischargeDate"><div class="slds-truncate">Discharge Date</div></th>
+                        <th onclick={handleSort} data-field="status"><div class="slds-truncate">Status</div></th>
+                        <th onclick={handleSort} data-field="patientName"><div class="slds-truncate">Patient Name</div></th>
+                        <th onclick={handleSort} data-field="program"><div class="slds-truncate">Program</div></th>
+                        <th onclick={handleSort} data-field="currentServiceFacility"><div class="slds-truncate">Current Service Facility</div></th>
+                        <th onclick={handleSort} data-field="currentLevelOfCare"><div class="slds-truncate">Current Level Of Care</div></th>
+                        <th onclick={handleSort} data-field="realm"><div class="slds-truncate">Realm</div></th>
+                        <th onclick={handleSort} data-field="primaryCounselor"><div class="slds-truncate">Primary Counselor</div></th>
+                        <th onclick={handleSort} data-field="combinedTextSupervisor"><div class="slds-truncate">Combined Text Supervisor</div></th>
+                        <th><div class="slds-truncate">Reviews</div></th>
+                        <th><div class="slds-truncate">Add Review</div></th>
+                        <th class="slds-text-align_center"><div class="slds-truncate"># of Admission Reviews</div></th>
+                        <th class="slds-text-align_center"><div class="slds-truncate"># of Ongoing Reviews</div></th>
+                        <th class="slds-text-align_center"><div class="slds-truncate"># of All Reviews</div></th>
+                    </tr>
+                    <template if:true={showFilters}>
+                        <tr class="filter-row">
+                            <th></th>
+                            <th>
+                                <lightning-input type="text" variant="label-hidden" label="Admission ID" placeholder="Filter" value={filters.admissionId} data-filter="admissionId" onchange={handleFilterInput}></lightning-input>
+                            </th>
+                            <th>
+                                <lightning-input type="text" variant="label-hidden" label="MBC ID" placeholder="Filter" value={filters.mbcId} data-filter="mbcId" onchange={handleFilterInput}></lightning-input>
+                            </th>
+                            <th>
+                                <lightning-input type="date" variant="label-hidden" label="Admission Date" value={filters.admissionDate} data-filter="admissionDate" onchange={handleFilterInput}></lightning-input>
+                            </th>
+                            <th>
+                                <lightning-input type="date" variant="label-hidden" label="Discharge Date" value={filters.dischargeDate} data-filter="dischargeDate" onchange={handleFilterInput}></lightning-input>
+                            </th>
+                            <th>
+                                <lightning-input type="text" variant="label-hidden" label="Status" placeholder="Filter" value={filters.status} data-filter="status" onchange={handleFilterInput}></lightning-input>
+                            </th>
+                            <th>
+                                <lightning-input type="text" variant="label-hidden" label="Patient Name" placeholder="Filter" value={filters.patientName} data-filter="patientName" onchange={handleFilterInput}></lightning-input>
+                            </th>
+                            <th>
+                                <lightning-input type="text" variant="label-hidden" label="Program" placeholder="Filter" value={filters.program} data-filter="program" onchange={handleFilterInput}></lightning-input>
+                            </th>
+                            <th>
+                                <lightning-input type="text" variant="label-hidden" label="Current Service Facility" placeholder="Filter" value={filters.currentServiceFacility} data-filter="currentServiceFacility" onchange={handleFilterInput}></lightning-input>
+                            </th>
+                            <th>
+                                <lightning-input type="text" variant="label-hidden" label="Current Level Of Care" placeholder="Filter" value={filters.currentLevelOfCare} data-filter="currentLevelOfCare" onchange={handleFilterInput}></lightning-input>
+                            </th>
+                            <th>
+                                <lightning-input type="text" variant="label-hidden" label="Realm" placeholder="Filter" value={filters.realm} data-filter="realm" onchange={handleFilterInput}></lightning-input>
+                            </th>
+                            <th>
+                                <lightning-input type="text" variant="label-hidden" label="Primary Counselor" placeholder="Filter" value={filters.primaryCounselor} data-filter="primaryCounselor" onchange={handleFilterInput}></lightning-input>
+                            </th>
+                            <th>
+                                <lightning-input type="text" variant="label-hidden" label="Combined Text Supervisor" placeholder="Filter" value={filters.combinedTextSupervisor} data-filter="combinedTextSupervisor" onchange={handleFilterInput}></lightning-input>
+                            </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th class="slds-text-align_center">
+                                <lightning-button label="Clear" variant="base" onclick={clearFilters}></lightning-button>
+                            </th>
+                        </tr>
+                    </template>
+                </thead>
+                <tbody>
+                    <template for:each={records} for:item="row">
+                        <tr key={row.id}>
+                            <td class="slds-text-align_center">
+                                <lightning-button-icon icon-name="utility:edit" alternative-text="Edit" title="Edit" size="x-small" data-id={row.id} onclick={handleEditClick}></lightning-button-icon>
+                                <lightning-button-icon icon-name="utility:preview" alternative-text="View" title="View" size="x-small" data-id={row.id} onclick={handleViewClick}></lightning-button-icon>
+                            </td>
+                            <td><div class="slds-truncate" title={row.admissionId}>{row.admissionId}</div></td>
+                            <td><div class="slds-truncate" title={row.mbcId}>{row.mbcId}</div></td>
+                            <td><div class="slds-truncate">{row.admissionDate}</div></td>
+                            <td><div class="slds-truncate">{row.dischargeDate}</div></td>
+                            <td><div class="slds-truncate" title={row.status}>{row.status}</div></td>
+                            <td><div class="slds-truncate" title={row.patientName}>{row.patientName}</div></td>
+                            <td><div class="slds-truncate" title={row.program}>{row.program}</div></td>
+                            <td><div class="slds-truncate" title={row.currentServiceFacility}>{row.currentServiceFacility}</div></td>
+                            <td><div class="slds-truncate" title={row.currentLevelOfCare}>{row.currentLevelOfCare}</div></td>
+                            <td><div class="slds-truncate" title={row.realm}>{row.realm}</div></td>
+                            <td><div class="slds-truncate" title={row.primaryCounselor}>{row.primaryCounselor}</div></td>
+                            <td><div class="slds-truncate" title={row.combinedTextSupervisor}>{row.combinedTextSupervisor}</div></td>
+                            <td>
+                                <a class="slds-text-link" tabindex="0" data-id={row.id} onclick={handleReviewsLinkClick}>Reviews</a>
+                            </td>
+                            <td>
+                                <lightning-button label="Add Review" variant="brand" data-id={row.id} onclick={handleAddReviewClick}></lightning-button>
+                            </td>
+                            <td class="slds-text-align_center">
+                                <a class="slds-text-link" tabindex="0" data-id={row.id} onclick={handleAdmissionCountClick}>{row.admissionReviewCount}</a>
+                            </td>
+                            <td class="slds-text-align_center">
+                                <a class="slds-text-link" tabindex="0" data-id={row.id} onclick={handleOngoingCountClick}>{row.ongoingReviewCount}</a>
+                            </td>
+                            <td class="slds-text-align_center">
+                                <a class="slds-text-link" tabindex="0" data-id={row.id} onclick={handleAllCountClick}>{row.allReviewCount}</a>
+                            </td>
+                        </tr>
+                    </template>
+                    <template if:true={hasNoRecords}>
+                        <tr>
+                            <td colspan="18" class="slds-text-align_center slds-p-around_medium">No admissions found.</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-p-top_small pagination-bar">
+            <div class="slds-col page-size-col">
+                <lightning-combobox label="Page Size" variant="label-hidden" value={pageSizeValue} options={pageSizeOptions} onchange={handlePageSizeChange}></lightning-combobox>
+            </div>
+            <div class="slds-col slds-text-align_center">
+                {pageInfoLabel}
+            </div>
+            <div class="slds-col slds-text-align_right">
+                <lightning-button-icon icon-name="utility:chevronleft" alternative-text="Previous Page" title="Previous Page" disabled={isFirstPage} onclick={handlePrevious}></lightning-button-icon>
+                <lightning-button-icon icon-name="utility:chevronright" alternative-text="Next Page" title="Next Page" disabled={isLastPage} onclick={handleNext}></lightning-button-icon>
+            </div>
+        </div>
+    </lightning-card>
+</template>

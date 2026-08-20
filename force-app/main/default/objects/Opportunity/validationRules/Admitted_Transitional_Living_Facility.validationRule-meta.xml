@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Admitted_Transitional_Living_Facility</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(RecordType.Name=&apos;Transitional Living Opportunity&apos;, AND( ISCHANGED(StageName),
+ISPICKVAL(StageName, &quot;Admission Scheduled&quot;),
+ISBLANK(TEXT(  Admitted_Transitional_Living_Facility__c ))
+), false)</errorConditionFormula>
+    <errorDisplayField>Admitted_Transitional_Living_Facility__c</errorDisplayField>
+    <errorMessage>Please Provide Admitted Transitional Living Facility</errorMessage>
+</ValidationRule>

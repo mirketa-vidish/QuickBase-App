@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Program__c</fullName>
+    <label>Admitted Program</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Facility_Approved__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Casa Flores</fullName>
+                <default>false</default>
+                <label>Casa Flores</label>
+            </value>
+            <value>
+                <fullName>Center for Women&apos;s Recovery</fullName>
+                <default>false</default>
+                <label>Center for Women&apos;s Recovery</label>
+            </value>
+            <value>
+                <fullName>Center for Older Adult Recovery</fullName>
+                <default>false</default>
+                <label>Center for Older Adult Recovery</label>
+            </value>
+            <value>
+                <fullName>Center for Men&apos;s Recovery</fullName>
+                <default>false</default>
+                <label>Center for Men&apos;s Recovery</label>
+            </value>
+            <value>
+                <fullName>Referred Stabilization</fullName>
+                <default>false</default>
+                <label>Referred Stabilization</label>
+            </value>
+            <value>
+                <fullName>Referred Stabilization - RMH</fullName>
+                <default>false</default>
+                <label>Referred Stabilization - RMH</label>
+            </value>
+            <value>
+                <fullName>Chemical Dependency Assessment</fullName>
+                <default>false</default>
+                <label>Chemical Dependency Assessment</label>
+            </value>
+            <value>
+                <fullName>No Program</fullName>
+                <default>false</default>
+                <label>No Program</label>
+            </value>
+            <value>
+                <fullName>DNCH</fullName>
+                <default>false</default>
+                <label>DNCH</label>
+            </value>
+            <value>
+                <fullName>Day/Night</fullName>
+                <default>false</default>
+                <label>Day/Night</label>
+            </value>
+            <value>
+                <fullName>Telehealth</fullName>
+                <default>false</default>
+                <label>Telehealth</label>
+            </value>
+            <value>
+                <fullName>Discover Assessments - Basic</fullName>
+                <default>false</default>
+                <label>Discover Assessments - Basic</label>
+            </value>
+            <value>
+                <fullName>Discover Assessments - Standard</fullName>
+                <default>false</default>
+                <label>Discover Assessments - Standard</label>
+            </value>
+            <value>
+                <fullName>Discover Assessments - Comprehensive</fullName>
+                <default>false</default>
+                <label>Discover Assessments - Comprehensive</label>
+            </value>
+            <value>
+                <fullName>Executive</fullName>
+                <default>false</default>
+                <label>Executive</label>
+            </value>
+            <value>
+                <fullName>Referred Stabilization - TTBH</fullName>
+                <default>false</default>
+                <label>Referred Stabilization - TTBH</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Hanley Center</controllingFieldValue>
+            <valueName>Casa Flores</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hanley Center</controllingFieldValue>
+            <valueName>Center for Women&apos;s Recovery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hanley Center</controllingFieldValue>
+            <valueName>Center for Older Adult Recovery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hanley Center</controllingFieldValue>
+            <valueName>Center for Men&apos;s Recovery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hanley Center</controllingFieldValue>
+            <controllingFieldValue>Origins Recovery Center</controllingFieldValue>
+            <valueName>Referred Stabilization</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hanley Center</controllingFieldValue>
+            <valueName>Referred Stabilization - RMH</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hanley Center</controllingFieldValue>
+            <controllingFieldValue>HeadWaters</controllingFieldValue>
+            <valueName>Chemical Dependency Assessment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hanley Center - Mental Health</controllingFieldValue>
+            <controllingFieldValue>Hanley Center Counseling</controllingFieldValue>
+            <controllingFieldValue>HeadWaters</controllingFieldValue>
+            <controllingFieldValue>Restored Path Detox</controllingFieldValue>
+            <controllingFieldValue>Hanley Center - Mental Health Outpatient</controllingFieldValue>
+            <controllingFieldValue>Hannah’s House</controllingFieldValue>
+            <controllingFieldValue>Origins Counseling - Harlingen</controllingFieldValue>
+            <controllingFieldValue>Origins Recovery Center</controllingFieldValue>
+            <controllingFieldValue>Origins Counseling Mental Health Services</controllingFieldValue>
+            <valueName>No Program</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hanley Center Counseling</controllingFieldValue>
+            <controllingFieldValue>HeadWaters</controllingFieldValue>
+            <valueName>DNCH</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hanley Center Counseling</controllingFieldValue>
+            <controllingFieldValue>HeadWaters</controllingFieldValue>
+            <valueName>Day/Night</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hanley Center Counseling</controllingFieldValue>
+            <controllingFieldValue>Origins Counseling Mental Health Services</controllingFieldValue>
+            <valueName>Discover Assessments - Basic</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hanley Center Counseling</controllingFieldValue>
+            <controllingFieldValue>Origins Counseling Mental Health Services</controllingFieldValue>
+            <valueName>Discover Assessments - Standard</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hanley Center Counseling</controllingFieldValue>
+            <controllingFieldValue>Origins Counseling Mental Health Services</controllingFieldValue>
+            <valueName>Discover Assessments - Comprehensive</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restored Path Detox</controllingFieldValue>
+            <valueName>Executive</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Origins Recovery Center</controllingFieldValue>
+            <valueName>Referred Stabilization - TTBH</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

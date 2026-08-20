@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pending_Admit_Must_have_gender</fullName>
+    <active>true</active>
+    <description>Opportunity at Admission Scheduled must have gender</description>
+    <errorConditionFormula>IF(AND(ISCHANGED(StageName),ISPICKVAL(StageName, &apos;Admission Pending&apos;)),
+ISBLANK(TEXT( Identified__c )),false)</errorConditionFormula>
+    <errorMessage>Please add gender</errorMessage>
+</ValidationRule>

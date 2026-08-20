@@ -1,0 +1,35 @@
+.table-container {
+    max-height: 32rem;
+}
+
+.admissions-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #6b6d70;
+    color: #ffffff;
+    cursor: pointer;
+    white-space: nowrap;
+    padding: 0.5rem 0.75rem;
+}
+
+.admissions-table thead .filter-row th {
+    position: sticky;
+    top: 2.25rem;
+    z-index: 1;
+    background-color: #f3f3f3;
+    cursor: default;
+    padding: 0.25rem 0.35rem;
+}
+
+.action-col {
+    width: 4.5rem;
+}
+
+.page-size-col {
+    max-width: 8rem;
+}
+
+.pagination-bar {
+    font-size: 0.8125rem;
+}

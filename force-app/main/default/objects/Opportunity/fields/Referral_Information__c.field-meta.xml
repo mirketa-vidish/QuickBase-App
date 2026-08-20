@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Referral_Information__c</fullName>
+    <label>Referral Information</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>12 Step Contact</fullName>
+                <default>false</default>
+                <label>12 Step Contact</label>
+            </value>
+            <value>
+                <fullName>211</fullName>
+                <default>false</default>
+                <label>211</label>
+            </value>
+            <value>
+                <fullName>Alumni Channel</fullName>
+                <default>false</default>
+                <label>Alumni Channel</label>
+            </value>
+            <value>
+                <fullName>Alumni of Facility</fullName>
+                <default>false</default>
+                <label>Alumni of Facility</label>
+            </value>
+            <value>
+                <fullName>Dr. Phil Show</fullName>
+                <default>false</default>
+                <label>Dr. Phil Show</label>
+            </value>
+            <value>
+                <fullName>Employer</fullName>
+                <default>false</default>
+                <label>Employer</label>
+            </value>
+            <value>
+                <fullName>Facebook Referral</fullName>
+                <default>false</default>
+                <label>Facebook Referral</label>
+            </value>
+            <value>
+                <fullName>Family / Friend</fullName>
+                <default>false</default>
+                <label>Family / Friend</label>
+            </value>
+            <value>
+                <fullName>Hanley Foundation / Board Member</fullName>
+                <default>false</default>
+                <label>Hanley Foundation / Board Member</label>
+            </value>
+            <value>
+                <fullName>Healthcare Organization</fullName>
+                <default>false</default>
+                <label>Healthcare Organization</label>
+            </value>
+            <value>
+                <fullName>Healthcare Professional</fullName>
+                <default>false</default>
+                <label>Healthcare Professional</label>
+            </value>
+            <value>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+                <label>Insurance</label>
+            </value>
+            <value>
+                <fullName>Interventionist</fullName>
+                <default>false</default>
+                <label>Interventionist</label>
+            </value>
+            <value>
+                <fullName>IPN/PRN</fullName>
+                <default>false</default>
+                <label>IPN/PRN</label>
+            </value>
+            <value>
+                <fullName>Legal Organization / Professional</fullName>
+                <default>false</default>
+                <label>Legal Organization / Professional</label>
+            </value>
+            <value>
+                <fullName>NOT YET KNOWN</fullName>
+                <default>false</default>
+                <label>NOT YET KNOWN</label>
+            </value>
+            <value>
+                <fullName>OBH Employee</fullName>
+                <default>false</default>
+                <label>OBH Employee</label>
+            </value>
+            <value>
+                <fullName>OBH Website</fullName>
+                <default>false</default>
+                <label>OBH Website</label>
+            </value>
+            <value>
+                <fullName>Other- See Notes</fullName>
+                <default>false</default>
+                <label>Other- See Notes</label>
+            </value>
+            <value>
+                <fullName>Palm Beach County FF</fullName>
+                <default>false</default>
+                <label>Palm Beach County FF</label>
+            </value>
+            <value>
+                <fullName>Press Release</fullName>
+                <default>false</default>
+                <label>Press Release</label>
+            </value>
+            <value>
+                <fullName>Radio Advertisement</fullName>
+                <default>false</default>
+                <label>Radio Advertisement</label>
+            </value>
+            <value>
+                <fullName>Seminole Tribe of Florida</fullName>
+                <default>false</default>
+                <label>Seminole Tribe of Florida</label>
+            </value>
+            <value>
+                <fullName>Treatment Facility</fullName>
+                <default>false</default>
+                <label>Treatment Facility</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

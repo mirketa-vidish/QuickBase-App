@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MBC_ID_Admission_Scheduled_and_Pending</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <columns>Projected_Admission_Date_and_Time__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>Facility_Approved__c</columns>
+    <columns>MBC_ID__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Admission Pending,Admission Scheduled,Admitted</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.FULL_NAME</field>
+        <operation>notEqual</operation>
+        <value>leila salera,caroline collins,mirketa admin,Offprem MCC_Integration_Origins,ashley barr</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Opportunity.Treatment_Opportunity</value>
+    </filters>
+    <filters>
+        <field>Facility_Approved__c</field>
+        <operation>notEqual</operation>
+        <value>Origins Counseling Mental Health Services,Origins Counseling - Mental Health</value>
+    </filters>
+    <filters>
+        <field>MBC_ID__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>MBC ID Admission Scheduled and Pending</label>
+</ListView>

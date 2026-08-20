@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Policy_Type__c</fullName>
+    <label>Primary Policy Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>PPO OON</fullName>
+                <default>false</default>
+                <label>PPO OON</label>
+            </value>
+            <value>
+                <fullName>PPO INN</fullName>
+                <default>false</default>
+                <label>PPO INN</label>
+            </value>
+            <value>
+                <fullName>HMO INN</fullName>
+                <default>false</default>
+                <label>HMO INN</label>
+            </value>
+            <value>
+                <fullName>EPO INN</fullName>
+                <default>false</default>
+                <label>EPO INN</label>
+            </value>
+            <value>
+                <fullName>EPO OON</fullName>
+                <default>false</default>
+                <label>EPO OON</label>
+            </value>
+            <value>
+                <fullName>POS OON</fullName>
+                <default>false</default>
+                <label>POS OON</label>
+            </value>
+            <value>
+                <fullName>POS INN</fullName>
+                <default>false</default>
+                <label>POS INN</label>
+            </value>
+            <value>
+                <fullName>Private Pay</fullName>
+                <default>false</default>
+                <label>Private Pay</label>
+            </value>
+            <value>
+                <fullName>Scholarship</fullName>
+                <default>false</default>
+                <label>Scholarship</label>
+            </value>
+            <value>
+                <fullName>Contracted Rate</fullName>
+                <default>false</default>
+                <label>Contracted Rate</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

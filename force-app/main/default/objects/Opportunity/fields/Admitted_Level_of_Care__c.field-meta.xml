@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Admitted_Level_of_Care__c</fullName>
+    <description>When patient admits to treatment, what level of care will they enter</description>
+    <inlineHelpText>Level of Care that patient will admit to in EMR</inlineHelpText>
+    <label>Admitted Level of Care</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Facility_Approved__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>DTX</fullName>
+                <default>false</default>
+                <label>DTX</label>
+            </value>
+            <value>
+                <fullName>RTC</fullName>
+                <default>false</default>
+                <label>RTC</label>
+            </value>
+            <value>
+                <fullName>PHP</fullName>
+                <default>false</default>
+                <label>PHP</label>
+            </value>
+            <value>
+                <fullName>IOP</fullName>
+                <default>false</default>
+                <label>IOP</label>
+            </value>
+            <value>
+                <fullName>OP</fullName>
+                <default>false</default>
+                <label>OP</label>
+            </value>
+            <value>
+                <fullName>Transitional Living</fullName>
+                <default>false</default>
+                <label>Transitional Living</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Hanley Center - Mental Health</controllingFieldValue>
+            <controllingFieldValue>Restored Path Detox</controllingFieldValue>
+            <controllingFieldValue>Hanley Center</controllingFieldValue>
+            <controllingFieldValue>HeadWaters</controllingFieldValue>
+            <controllingFieldValue>Hannah’s House</controllingFieldValue>
+            <controllingFieldValue>Origins Recovery Center</controllingFieldValue>
+            <valueName>RTC</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restored Path Detox</controllingFieldValue>
+            <controllingFieldValue>Hanley Center</controllingFieldValue>
+            <controllingFieldValue>HeadWaters</controllingFieldValue>
+            <controllingFieldValue>Hannah’s House</controllingFieldValue>
+            <controllingFieldValue>Origins Recovery Center</controllingFieldValue>
+            <valueName>DTX</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hanley Center - Mental Health Outpatient</controllingFieldValue>
+            <controllingFieldValue>Origins Counseling - Harlingen</controllingFieldValue>
+            <controllingFieldValue>Hanley Center Counseling</controllingFieldValue>
+            <controllingFieldValue>Origins Counseling Mental Health Services</controllingFieldValue>
+            <valueName>IOP</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hanley Center - Mental Health Outpatient</controllingFieldValue>
+            <controllingFieldValue>Hanley Center</controllingFieldValue>
+            <controllingFieldValue>Hanley Center Counseling</controllingFieldValue>
+            <controllingFieldValue>HeadWaters</controllingFieldValue>
+            <controllingFieldValue>Origins Counseling Mental Health Services</controllingFieldValue>
+            <valueName>OP</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hanley Center Counseling</controllingFieldValue>
+            <controllingFieldValue>HeadWaters</controllingFieldValue>
+            <valueName>PHP</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

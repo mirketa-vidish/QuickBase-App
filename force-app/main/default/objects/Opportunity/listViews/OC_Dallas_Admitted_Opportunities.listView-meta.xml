@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OC_Dallas_Admitted_Opportunities</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Admitted_Date__c</columns>
+    <columns>Discharge_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Anticipated_Realm__c</field>
+        <operation>equals</operation>
+        <value>Origins Counseling Dallas</value>
+    </filters>
+    <filters>
+        <field>Admitted_Transitional_Living_Facility__c</field>
+        <operation>notEqual</operation>
+        <value>Windhaven House</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Admitted,Alumni-Discharged</value>
+    </filters>
+    <label>OC Dallas Admitted Opportunities</label>
+</ListView>

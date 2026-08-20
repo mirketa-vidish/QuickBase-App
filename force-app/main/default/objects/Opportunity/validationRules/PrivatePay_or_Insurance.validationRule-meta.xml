@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PrivatePay_or_Insurance</fullName>
+    <active>true</active>
+    <description>Before an opportunity can be put in &quot;admission scheduled&quot;, must select either private pay or has insurance.</description>
+    <errorConditionFormula>IF(RecordType.DeveloperName=&apos;Treatment_Opportunity&apos;, 
+AND( ISCHANGED(StageName),
+     ISPICKVAL(StageName, &quot;Admission Scheduled&quot;),
+     Private_Pay__c=false , 
+     Has_Insurance__c =false)
+,false)</errorConditionFormula>
+    <errorMessage>Please select private pay or has insurance.</errorMessage>
+</ValidationRule>

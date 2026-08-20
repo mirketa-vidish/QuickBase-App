@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Windhaven_Admitted_Opportunities</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Admitted_Date__c</columns>
+    <columns>Discharge_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Admitted_Transitional_Living_Facility__c</field>
+        <operation>equals</operation>
+        <value>Windhaven House</value>
+    </filters>
+    <label>Windhaven Admitted Opportunities</label>
+</ListView>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Anticipated_Realm__c</fullName>
+    <label>Admitted Treatment Realm</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Origins Behavioral HealthCare of Florida, LLC</fullName>
+                <default>false</default>
+                <label>Origins Behavioral HealthCare of Florida, LLC</label>
+            </value>
+            <value>
+                <fullName>Origins Recovery of Texas, LLC</fullName>
+                <default>false</default>
+                <label>Origins Recovery of Texas, LLC</label>
+            </value>
+            <value>
+                <fullName>Origins Counseling, LLC</fullName>
+                <default>false</default>
+                <label>Origins Counseling, LLC</label>
+            </value>
+            <value>
+                <fullName>Origins Counseling Mental Health Services</fullName>
+                <default>false</default>
+                <label>Origins Counseling Mental Health Services</label>
+            </value>
+            <value>
+                <fullName>Origins Behavioral Healthcare of Florida</fullName>
+                <default>false</default>
+                <label>Origins Behavioral Healthcare of Florida</label>
+            </value>
+            <value>
+                <fullName>Origins Recovery of Texas</fullName>
+                <default>false</default>
+                <label>Origins Recovery of Texas</label>
+            </value>
+            <value>
+                <fullName>Origins Counseling Dallas</fullName>
+                <default>false</default>
+                <label>Origins Counseling Dallas</label>
+            </value>
+            <value>
+                <fullName>Origins West Palm Beach Transitional Living</fullName>
+                <default>false</default>
+                <label>Origins West Palm Beach Transitional Living</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

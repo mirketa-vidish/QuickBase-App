@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_on_Alumni_Discharged</fullName>
+    <active>true</active>
+    <errorConditionFormula>if
+(
+AND
+(ISCHANGED
+(StageName),OR(ISPICKVAL(StageName,&quot;Alumni-Discharged&quot;))
+),
+if
+(
+OR
+(ISBLANK(Discharge_Date__c)),
+true,false
+),false
+)</errorConditionFormula>
+    <errorMessage>Please Enter &quot;Discharge Date&quot;</errorMessage>
+</ValidationRule>

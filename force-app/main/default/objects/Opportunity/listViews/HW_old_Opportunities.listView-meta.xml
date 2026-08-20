@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HW_old_Opportunities</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>Primary_Phone_No__c</columns>
+    <columns>IBP__IfbyphoneCallId__c</columns>
+    <columns>OPPORTUNITY.LAST_ACTIVITY</columns>
+    <columns>OPPORTUNITY.LEAD_SOURCE</columns>
+    <columns>DialogTech_Phone_Label__c</columns>
+    <columns>Reason_for_Closed_Lost__c</columns>
+    <columns>Caller_Email__c</columns>
+    <columns>Referral_Information__c</columns>
+    <columns>Referent__c</columns>
+    <columns>Assigned_Proteam__c</columns>
+    <columns>Facility_requested__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CORE.USERS.FULL_NAME</field>
+        <operation>notEqual</operation>
+        <value>mirketa admin</value>
+    </filters>
+    <filters>
+        <field>Facility_requested__c</field>
+        <operation>equals</operation>
+        <value>HeadWaters</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>notEqual</operation>
+        <value>Admitted,Alumni-Discharged</value>
+    </filters>
+    <label>HW old Opportunities</label>
+</ListView>

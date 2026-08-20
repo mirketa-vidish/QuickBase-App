@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>opportunity_referent</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISPICKVAL(Caller_Relationshipship_to_Client__c,&apos;Referent&apos;),ISBLANK(Referent__c))</errorConditionFormula>
+    <errorMessage>Please Fill Referent as you choose Caller Relationship to Patient is Referent</errorMessage>
+</ValidationRule>

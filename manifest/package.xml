@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>AdmissionDatatableController</members>
+        <members>AdmissionDatatableControllerTest</members>
+        <members>ReviewListController</members>
+        <members>ReviewListControllerTest</members>
+        <name>ApexClass</name>
+    </types>
+
+    <types>
+        <members>admissionsDatatable</members>
+        <members>admissionDetailModal</members>
+        <members>reviewsListModal</members>
+        <name>LightningComponentBundle</name>
+    </types>
+
+    <version>67.0</version>
+</Package>

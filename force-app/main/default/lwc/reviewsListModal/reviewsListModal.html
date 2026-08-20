@@ -1,0 +1,52 @@
+<template>
+    <lightning-modal-header label={modalTitle}></lightning-modal-header>
+    <lightning-modal-body>
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+        </template>
+        <template if:true={errorMessage}>
+            <div class="slds-text-color_error slds-p-bottom_small">{errorMessage}</div>
+        </template>
+        <div class="slds-scrollable_x">
+            <table class="slds-table slds-table_bordered slds-table_striped">
+                <thead>
+                    <tr>
+                        <th><div class="slds-truncate">Name</div></th>
+                        <th><div class="slds-truncate">Record Type</div></th>
+                        <th><div class="slds-truncate">Created By</div></th>
+                        <th><div class="slds-truncate">Created Date</div></th>
+                        <th><div class="slds-truncate">Last Modified Date</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={records} for:item="row">
+                        <tr key={row.id}>
+                            <td>
+                                <a class="slds-text-link" tabindex="0" data-id={row.id} onclick={handleRowClick}>{row.name}</a>
+                            </td>
+                            <td>{row.recordTypeName}</td>
+                            <td>{row.createdByName}</td>
+                            <td><lightning-formatted-date-time value={row.createdDate}></lightning-formatted-date-time></td>
+                            <td><lightning-formatted-date-time value={row.lastModifiedDate}></lightning-formatted-date-time></td>
+                        </tr>
+                    </template>
+                    <template if:true={hasNoRecords}>
+                        <tr>
+                            <td colspan="5" class="slds-text-align_center slds-p-around_medium">No reviews found.</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-p-top_small">
+            <div class="slds-col">{pageInfoLabel}</div>
+            <div class="slds-col slds-text-align_right">
+                <lightning-button-icon icon-name="utility:chevronleft" alternative-text="Previous Page" title="Previous Page" disabled={isFirstPage} onclick={handlePrevious}></lightning-button-icon>
+                <lightning-button-icon icon-name="utility:chevronright" alternative-text="Next Page" title="Next Page" disabled={isLastPage} onclick={handleNext}></lightning-button-icon>
+            </div>
+        </div>
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button label="Close" onclick={handleClose}></lightning-button>
+    </lightning-modal-footer>
+</template>

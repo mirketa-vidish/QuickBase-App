@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Admitted_ServiceFacility_Mandatory</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(RecordType.Name=&apos;Treatment Opportunity&apos;, AND( ISCHANGED(StageName),
+ISPICKVAL(StageName, &quot;Admission Scheduled&quot;),
+ISBLANK(TEXT( Facility_Approved__c ))
+), false)</errorConditionFormula>
+    <errorDisplayField>Facility_Approved__c</errorDisplayField>
+    <errorMessage>Please Provide Admitted Treatment Service Facility</errorMessage>
+</ValidationRule>

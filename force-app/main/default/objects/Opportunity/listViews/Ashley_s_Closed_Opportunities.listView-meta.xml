@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ashley_s_Closed_Opportunities</fullName>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>OPPORTUNITY.LAST_UPDATE</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>Caller_First_Name__c</columns>
+    <columns>Caller_Last_Name__c</columns>
+    <columns>Caller_Phone__c</columns>
+    <columns>Facility_requested__c</columns>
+    <columns>State__c</columns>
+    <columns>Projected_Admission_Date__c</columns>
+    <columns>Referral_Information__c</columns>
+    <columns>Referent__c</columns>
+    <columns>Assigned_Proteam__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>contains</operation>
+        <value>Closed Referred Out,Closed Lost</value>
+    </filters>
+    <label>Ashley&apos;s Closed Opportunities</label>
+</ListView>

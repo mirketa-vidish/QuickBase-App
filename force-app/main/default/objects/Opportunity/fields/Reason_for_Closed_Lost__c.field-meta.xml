@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reason_for_Closed_Lost__c</fullName>
+    <label>Reason for Closed Lost</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Admitted to another facility</fullName>
+                <default>false</default>
+                <label>Admitted to another facility</label>
+            </value>
+            <value>
+                <fullName>Attempting Lower Level of Care</fullName>
+                <default>false</default>
+                <label>Attempting Lower Level of Care</label>
+            </value>
+            <value>
+                <fullName>Duplicate lead</fullName>
+                <default>false</default>
+                <label>Duplicate Lead</label>
+            </value>
+            <value>
+                <fullName>Financial – no insurance and no financial resources for treatment</fullName>
+                <default>false</default>
+                <label>Financial – no insurance and no financial resources for treatment</label>
+            </value>
+            <value>
+                <fullName>Financial or Insurance – Does Not Want a Referral</fullName>
+                <default>false</default>
+                <label>Financial or Insurance – Does Not Want a Referral</label>
+            </value>
+            <value>
+                <fullName>Indigent</fullName>
+                <default>false</default>
+                <label>Indigent</label>
+            </value>
+            <value>
+                <fullName>Legal Issues</fullName>
+                <default>false</default>
+                <label>Legal Issues</label>
+            </value>
+            <value>
+                <fullName>Medicare/Medicaid only</fullName>
+                <default>false</default>
+                <label>Medicare/Medicaid only</label>
+            </value>
+            <value>
+                <fullName>No response to our calls</fullName>
+                <default>false</default>
+                <label>No response to our calls</label>
+            </value>
+            <value>
+                <fullName>Refused further follow-up</fullName>
+                <default>false</default>
+                <label>Refused further follow-up</label>
+            </value>
+            <value>
+                <fullName>Refusing Treatment</fullName>
+                <default>false</default>
+                <label>Refusing Treatment</label>
+            </value>
+            <value>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+                <label>Other - See Notes</label>
+            </value>
+            <value>
+                <fullName>HC Program Full</fullName>
+                <default>false</default>
+                <label>HC Program Full</label>
+            </value>
+            <value>
+                <fullName>Refusing LOS</fullName>
+                <default>false</default>
+                <label>Refusing LOS</label>
+            </value>
+            <value>
+                <fullName>Call transfer</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Call transfer</label>
+            </value>
+            <value>
+                <fullName>Not an admissions call</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Not an admissions call</label>
+            </value>
+            <value>
+                <fullName>Patient refusing treatment</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Patient refusing treatment</label>
+            </value>
+            <value>
+                <fullName>Wrong number</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Wrong number</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Admitted_Program</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(RecordType.Name=&apos;Treatment Opportunity&apos;, AND( ISCHANGED(StageName),
+ISPICKVAL(StageName, &quot;Admission Scheduled&quot;),
+ISBLANK(TEXT(Program__c))
+), false)</errorConditionFormula>
+    <errorDisplayField>Program__c</errorDisplayField>
+    <errorMessage>Please Provide Admitted Program</errorMessage>
+</ValidationRule>

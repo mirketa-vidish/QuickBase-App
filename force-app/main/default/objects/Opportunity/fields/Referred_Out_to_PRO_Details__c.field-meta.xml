@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Referred_Out_to_PRO_Details__c</fullName>
+    <description>This field is for team to add comments captured on activity section for the opportunity. this field will be added to email template for Referred out PRO process.</description>
+    <label>Referred Out to PRO Details</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Can’t meet patient responsibility – needs in network</fullName>
+                <default>false</default>
+                <label>Can’t meet patient responsibility – needs in network</label>
+            </value>
+            <value>
+                <fullName>Clinically denied – needs adolescent provider</fullName>
+                <default>false</default>
+                <label>Clinically denied – needs adolescent provider</label>
+            </value>
+            <value>
+                <fullName>Clinically denied – needs eating disorder primary provider</fullName>
+                <default>false</default>
+                <label>Clinically denied – needs eating disorder primary provider</label>
+            </value>
+            <value>
+                <fullName>Clinically denied –needs psychiatric primary provider</fullName>
+                <default>false</default>
+                <label>Clinically denied –needs psychiatric primary provider</label>
+            </value>
+            <value>
+                <fullName>Financial - No out of network benefits – needs in network</fullName>
+                <default>false</default>
+                <label>Financial - No out of network benefits – needs in network</label>
+            </value>
+            <value>
+                <fullName>Medically denied – needs a higher level of care</fullName>
+                <default>false</default>
+                <label>Medically denied – needs a higher level of care</label>
+            </value>
+            <value>
+                <fullName>No SUD as primary diagnosis</fullName>
+                <default>false</default>
+                <label>No SUD as primary diagnosis</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

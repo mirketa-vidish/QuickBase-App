@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsDeceasedValidation</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR(AND(
+   NOT(ISNEW()),(Do_Not_Contact__c)=True,
+   ( Is_Deceased__c) = TRUE,Days1__c&gt;1
+),AND(ISNEW(),(Is_Deceased__c )= TRUE))</errorConditionFormula>
+    <errorDisplayField>AccountId</errorDisplayField>
+    <errorMessage>You can not Modify the Record if Patient is deceased</errorMessage>
+</ValidationRule>

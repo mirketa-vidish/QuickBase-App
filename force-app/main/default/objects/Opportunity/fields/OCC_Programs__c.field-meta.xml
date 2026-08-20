@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OCC_Programs__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Program__c,&quot;Discover Assessments - Basic&quot;, &quot;1 hour&quot;, &quot;Discover Assessments - Standard&quot;, &quot;1-2 hours&quot;, &quot;Discover Assessments - Comprehensive&quot;, &quot;2-3 hours&quot;, &quot; &quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>OCC Programs</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Alumni_Opportunities_for_City_State</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Client_Email__c</columns>
+    <columns>Primary_Phone_No__c</columns>
+    <columns>Referral_Information__c</columns>
+    <columns>Facility_Approved__c</columns>
+    <columns>Anticipated_Realm__c</columns>
+    <columns>Admitted_Date__c</columns>
+    <columns>DC_Date__c</columns>
+    <columns>City__c</columns>
+    <columns>State__c</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Alumni-Discharged</value>
+    </filters>
+    <label>Alumni Opportunities for City/State</label>
+    <sharedTo>
+        <role>Alumni_Care_Coordinator</role>
+        <role>Regional_Director_of_Alumni_Services</role>
+        <role>Senior_Director_of_Marketing_and_Alumni</role>
+    </sharedTo>
+</ListView>
