@@ -2,6 +2,14 @@
     <lightning-card title="Admissions" icon-name="standard:opportunity">
         <div slot="actions">
             <lightning-button-icon
+                icon-name="utility:refresh"
+                alternative-text="Refresh"
+                title="Refresh"
+                variant="border-filled"
+                class="slds-m-right_x-small"
+                onclick={handleRefreshClick}>
+            </lightning-button-icon>
+            <lightning-button-icon
                 icon-name="utility:filterList"
                 alternative-text="Toggle Filters"
                 title="Toggle Filters"

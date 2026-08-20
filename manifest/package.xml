@@ -10,7 +10,6 @@
 
     <types>
         <members>admissionsDatatable</members>
-        <members>admissionDetailModal</members>
         <members>reviewsListModal</members>
         <members>addReviewModal</members>
         <name>LightningComponentBundle</name>

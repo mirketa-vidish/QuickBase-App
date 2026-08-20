@@ -1,7 +1,6 @@
 import { LightningElement, wire } from 'lwc';
 import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
 import getAdmissions from '@salesforce/apex/AdmissionDatatableController.getAdmissions';
-import AdmissionDetailModal from 'c/admissionDetailModal';
 import ReviewsListModal from 'c/reviewsListModal';
 import AddReviewModal from 'c/addReviewModal';
 
@@ -92,6 +91,10 @@ export default class AdmissionsDatatable extends NavigationMixin(LightningElemen
         this.showFilters = !this.showFilters;
     }
 
+    handleRefreshClick() {
+        this.loadData();
+    }
+
     handleFilterInput(event) {
         const field = event.target.dataset.filter;
         const value = event.target.value;
@@ -154,15 +157,16 @@ export default class AdmissionsDatatable extends NavigationMixin(LightningElemen
         });
     }
 
-    async handleViewClick(event) {
+    handleViewClick(event) {
         const recordId = event.currentTarget.dataset.id;
-        const result = await AdmissionDetailModal.open({
-            size: 'large',
-            recordId
+        this[NavigationMixin.Navigate]({
+            type: 'standard__recordPage',
+            attributes: {
+                recordId,
+                objectApiName: 'Opportunity',
+                actionName: 'view'
+            }
         });
-        if (result === 'addReview') {
-            this.loadData();
-        }
     }
 
     async handleAddReviewClick(event) {
