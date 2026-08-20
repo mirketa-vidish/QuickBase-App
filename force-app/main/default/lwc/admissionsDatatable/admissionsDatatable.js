@@ -1,9 +1,9 @@
-import { LightningElement } from 'lwc';
-import { NavigationMixin } from 'lightning/navigation';
-import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
+import { LightningElement, wire } from 'lwc';
+import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
 import getAdmissions from '@salesforce/apex/AdmissionDatatableController.getAdmissions';
 import AdmissionDetailModal from 'c/admissionDetailModal';
 import ReviewsListModal from 'c/reviewsListModal';
+import AddReviewModal from 'c/addReviewModal';
 
 const PAGE_SIZE_OPTIONS = [10, 25, 50, 100].map((n) => ({ label: String(n), value: String(n) }));
 const FILTER_DEBOUNCE_MS = 400;
@@ -25,8 +25,17 @@ export default class AdmissionsDatatable extends NavigationMixin(LightningElemen
     pageSizeOptions = PAGE_SIZE_OPTIONS;
     filterTimeoutId;
 
-    connectedCallback() {
-        this.loadData();
+    // Lightning often keeps this component's instance alive rather than
+    // fully remounting it when the user navigates away (e.g. to create a
+    // Review) and back - so connectedCallback's one-time load wouldn't pick
+    // up newly created records. CurrentPageReference re-fires every time
+    // navigation returns to this view, so it doubles as a "refresh on
+    // return" hook (as well as the initial load).
+    @wire(CurrentPageReference)
+    handlePageReferenceChange(pageReference) {
+        if (pageReference) {
+            this.loadData();
+        }
     }
 
     async loadData() {
@@ -152,29 +161,19 @@ export default class AdmissionsDatatable extends NavigationMixin(LightningElemen
             recordId
         });
         if (result === 'addReview') {
-            this.navigateToAddReview(recordId);
+            this.loadData();
         }
     }
 
-    handleAddReviewClick(event) {
+    async handleAddReviewClick(event) {
         const recordId = event.currentTarget.dataset.id;
-        this.navigateToAddReview(recordId);
-    }
-
-    navigateToAddReview(recordId) {
-        // No recordTypeId is passed, so Salesforce shows its standard
-        // record-type selection screen for Review__c (Admission Review vs
-        // Ongoing Review), exactly like clicking the object's own New button.
-        this[NavigationMixin.Navigate]({
-            type: 'standard__objectPage',
-            attributes: {
-                objectApiName: 'Review__c',
-                actionName: 'new'
-            },
-            state: {
-                defaultFieldValues: encodeDefaultFieldValues({ Opportunity__c: recordId })
-            }
+        const result = await AddReviewModal.open({
+            size: 'large',
+            admissionId: recordId
         });
+        if (result === 'saved') {
+            this.loadData();
+        }
     }
 
     openReviewsList(recordId, reviewType, modalTitle) {

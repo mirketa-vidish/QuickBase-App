@@ -1,0 +1,36 @@
+<template>
+    <lightning-modal-header label="New Review"></lightning-modal-header>
+    <lightning-modal-body>
+        <template if:true={isSelectingType}>
+            <p class="slds-text-title_bold slds-p-bottom_small">Record Type</p>
+            <template if:true={hasNoRecordTypes}>
+                <p class="slds-text-color_error">No review types are available for your profile.</p>
+            </template>
+            <lightning-radio-group
+                name="reviewRecordType"
+                label="Select a record type"
+                variant="label-hidden"
+                options={recordTypeOptions}
+                value={pendingRecordTypeId}
+                onchange={handleRecordTypeChange}
+                type="radio">
+            </lightning-radio-group>
+        </template>
+        <template if:false={isSelectingType}>
+            <lightning-record-form
+                object-api-name="Review__c"
+                record-type-id={selectedRecordTypeId}
+                layout-type="Full"
+                mode="edit"
+                onsuccess={handleFormSuccess}
+                oncancel={handleCancel}>
+            </lightning-record-form>
+        </template>
+    </lightning-modal-body>
+    <template if:true={isSelectingType}>
+        <lightning-modal-footer>
+            <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+            <lightning-button label="Next" variant="brand" class="slds-m-left_x-small" disabled={isNextDisabled} onclick={handleNext}></lightning-button>
+        </lightning-modal-footer>
+    </template>
+</template>
