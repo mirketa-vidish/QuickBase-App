@@ -71,14 +71,6 @@ public with sharing class AdmissionDatatableController {
 
     private static final Integer DEFAULT_PAGE_SIZE = 25;
 
-    public class TableRequest {
-        @AuraEnabled public Map<String, String> filters;
-        @AuraEnabled public String sortField;
-        @AuraEnabled public String sortDirection;
-        @AuraEnabled public Integer pageNumber;
-        @AuraEnabled public Integer pageSize;
-    }
-
     public class TableResult {
         @AuraEnabled public List<AdmissionRow> records;
         @AuraEnabled public Integer totalRecords;
@@ -104,27 +96,36 @@ public with sharing class AdmissionDatatableController {
     }
 
     @AuraEnabled
-    public static TableResult getAdmissions(TableRequest request) {
-        if (request == null) {
-            request = new TableRequest();
-        }
-        Integer pageSize = (request.pageSize != null && request.pageSize > 0) ? request.pageSize : DEFAULT_PAGE_SIZE;
-        Integer pageNumber = (request.pageNumber != null && request.pageNumber > 0) ? request.pageNumber : 1;
-        Integer offset = (pageNumber - 1) * pageSize;
+    public static TableResult getAdmissions(
+        Map<String, String> filters,
+        String sortField,
+        String sortDirection,
+        Integer pageNumber,
+        Integer pageSize
+    ) {
+        // Plain scalar/Map parameters, not a wrapper request object - a
+        // custom wrapper class parameter here previously deserialized to an
+        // empty/null instance when called imperatively from the LWC (the
+        // same issue confirmed and fixed in ReviewListController), which is
+        // why filtering silently did nothing while pagination/sorting
+        // appeared to work (they have safe defaults; filters does not).
+        Integer effectivePageSize = (pageSize != null && pageSize > 0) ? pageSize : DEFAULT_PAGE_SIZE;
+        Integer effectivePageNumber = (pageNumber != null && pageNumber > 0) ? pageNumber : 1;
+        Integer offset = (effectivePageNumber - 1) * effectivePageSize;
 
         Map<String, Object> binds = new Map<String, Object>();
-        String whereClause = buildWhereClause(request.filters, binds);
+        String whereClause = buildWhereClause(filters, binds);
 
-        String orderByField = SORT_FIELD_MAP.containsKey(request.sortField)
-            ? SORT_FIELD_MAP.get(request.sortField)
+        String orderByField = SORT_FIELD_MAP.containsKey(sortField)
+            ? SORT_FIELD_MAP.get(sortField)
             : 'Admission_Date__c';
-        String orderByDir = 'ASC'.equalsIgnoreCase(request.sortDirection) ? 'ASC' : 'DESC';
+        String orderByDir = 'ASC'.equalsIgnoreCase(sortDirection) ? 'ASC' : 'DESC';
 
         String countQuery = 'SELECT COUNT() FROM Opportunity' + whereClause;
         Integer total = Database.countQueryWithBinds(countQuery, binds, AccessLevel.USER_MODE);
 
         Map<String, Object> dataBinds = new Map<String, Object>(binds);
-        dataBinds.put('limitSize', pageSize);
+        dataBinds.put('limitSize', effectivePageSize);
         dataBinds.put('offsetSize', offset);
 
         String dataQuery = 'SELECT Id, Admission_ID__c, MBC_ID__c, Admission_Date__c, Discharge_Date__c, StageName, ' +

@@ -29,6 +29,10 @@
     top: 2.25rem;
     z-index: 2;
     background-color: #f3f3f3;
+    /* Overrides the white text color inherited from .admissions-table
+       thead th above - without this, text typed into the filter inputs
+       renders white-on-white and is invisible. */
+    color: #181818;
     cursor: default;
     padding: 0.25rem 0.35rem;
 }

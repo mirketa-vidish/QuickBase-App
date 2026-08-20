@@ -27,7 +27,7 @@ private class AdmissionDatatableControllerTest {
         }
         SObject review = reviewType.newSObject();
         review.put('RecordTypeId', rtInfos.get(recordTypeDeveloperName).getRecordTypeId());
-        review.put('Admission__c', admissionId);
+        review.put('Opportunity__c', admissionId);
         insert review;
     }
 
@@ -38,14 +38,10 @@ private class AdmissionDatatableControllerTest {
         createReview(admissionId, 'Admission_Review');
         createReview(admissionId, 'Ongoing_Review');
 
-        AdmissionDatatableController.TableRequest req = new AdmissionDatatableController.TableRequest();
-        req.pageNumber = 1;
-        req.pageSize = 10;
-        req.sortField = 'admissionId';
-        req.sortDirection = 'ASC';
-
         Test.startTest();
-        AdmissionDatatableController.TableResult result = AdmissionDatatableController.getAdmissions(req);
+        AdmissionDatatableController.TableResult result = AdmissionDatatableController.getAdmissions(
+            null, 'admissionId', 'ASC', 1, 10
+        );
         Test.stopTest();
 
         System.assertEquals(1, result.totalRecords);
@@ -62,14 +58,15 @@ private class AdmissionDatatableControllerTest {
         createAdmission('A-2001', 'Active');
         createAdmission('A-2002', 'Discharged');
 
-        AdmissionDatatableController.TableRequest req = new AdmissionDatatableController.TableRequest();
-        req.filters = new Map<String, String>{
+        Map<String, String> filters = new Map<String, String>{
             'admissionId' => 'A-2002',
             'admissionDate' => String.valueOf(Date.today())
         };
 
         Test.startTest();
-        AdmissionDatatableController.TableResult result = AdmissionDatatableController.getAdmissions(req);
+        AdmissionDatatableController.TableResult result = AdmissionDatatableController.getAdmissions(
+            filters, null, null, null, null
+        );
         Test.stopTest();
 
         System.assertEquals(1, result.totalRecords);
@@ -77,11 +74,13 @@ private class AdmissionDatatableControllerTest {
     }
 
     @isTest
-    static void testGetAdmissionsWithNullRequestUsesDefaults() {
+    static void testGetAdmissionsWithNoArgsUsesDefaults() {
         createAdmission('A-3001', 'Active');
 
         Test.startTest();
-        AdmissionDatatableController.TableResult result = AdmissionDatatableController.getAdmissions(null);
+        AdmissionDatatableController.TableResult result = AdmissionDatatableController.getAdmissions(
+            null, null, null, null, null
+        );
         Test.stopTest();
 
         System.assertEquals(1, result.totalRecords);

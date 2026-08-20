@@ -34,13 +34,11 @@ export default class AdmissionsDatatable extends NavigationMixin(LightningElemen
         this.errorMessage = undefined;
         try {
             const result = await getAdmissions({
-                request: {
-                    filters: this.filters,
-                    sortField: this.sortField,
-                    sortDirection: this.sortDirection,
-                    pageNumber: this.pageNumber,
-                    pageSize: this.pageSize
-                }
+                filters: this.filters,
+                sortField: this.sortField,
+                sortDirection: this.sortDirection,
+                pageNumber: this.pageNumber,
+                pageSize: this.pageSize
             });
             this.records = result.records;
             this.totalRecords = result.totalRecords;
