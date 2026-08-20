@@ -1,11 +1,22 @@
 .table-container {
     max-height: 32rem;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.admissions-table {
+    table-layout: auto;
+}
+
+.admissions-table th,
+.admissions-table td {
+    min-width: 9rem;
 }
 
 .admissions-table thead th {
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 2;
     background-color: #6b6d70;
     color: #ffffff;
     cursor: pointer;
@@ -16,14 +27,53 @@
 .admissions-table thead .filter-row th {
     position: sticky;
     top: 2.25rem;
-    z-index: 1;
+    z-index: 2;
     background-color: #f3f3f3;
     cursor: default;
     padding: 0.25rem 0.35rem;
 }
 
 .action-col {
-    width: 4.5rem;
+    width: 6rem;
+    min-width: 6rem;
+    max-width: 6rem;
+    white-space: nowrap;
+}
+
+.admission-id-col {
+    min-width: 7rem;
+}
+
+/* Freeze the Actions + Admission ID columns while scrolling horizontally.
+   sticky-col-admission-id's left offset must exactly match action-col's
+   locked width (both set to 6rem) - otherwise the two frozen columns
+   overlap and clip each other's content. */
+.sticky-col {
+    position: sticky;
+    background-color: #ffffff;
+}
+
+.sticky-col-actions {
+    left: 0;
+    z-index: 1;
+}
+
+.sticky-col-admission-id {
+    left: 6rem;
+    z-index: 1;
+    box-shadow: 2px 0 4px -2px rgba(0, 0, 0, 0.35);
+}
+
+.admissions-table thead .sticky-col {
+    z-index: 3;
+}
+
+.admissions-table thead tr.table-header-row .sticky-col {
+    background-color: #6b6d70;
+}
+
+.admissions-table thead tr.filter-row .sticky-col {
+    background-color: #f3f3f3;
 }
 
 .page-size-col {

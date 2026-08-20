@@ -19,11 +19,11 @@
         </template>
 
         <div class="slds-scrollable_x table-container">
-            <table class="slds-table slds-table_bordered slds-table_fixed-layout slds-table_striped admissions-table">
+            <table class="slds-table slds-table_bordered slds-table_striped admissions-table">
                 <thead>
                     <tr class="table-header-row">
-                        <th class="slds-text-align_center action-col"><div class="slds-truncate">Actions</div></th>
-                        <th onclick={handleSort} data-field="admissionId"><div class="slds-truncate">Admission ID</div></th>
+                        <th class="slds-text-align_center action-col sticky-col sticky-col-actions"><div class="slds-truncate">Actions</div></th>
+                        <th class="admission-id-col sticky-col sticky-col-admission-id" onclick={handleSort} data-field="admissionId"><div class="slds-truncate">Admission ID</div></th>
                         <th onclick={handleSort} data-field="mbcId"><div class="slds-truncate">MBC ID</div></th>
                         <th onclick={handleSort} data-field="admissionDate"><div class="slds-truncate">Admission Date</div></th>
                         <th onclick={handleSort} data-field="dischargeDate"><div class="slds-truncate">Discharge Date</div></th>
@@ -43,8 +43,8 @@
                     </tr>
                     <template if:true={showFilters}>
                         <tr class="filter-row">
-                            <th></th>
-                            <th>
+                            <th class="sticky-col sticky-col-actions"></th>
+                            <th class="sticky-col sticky-col-admission-id">
                                 <lightning-input type="text" variant="label-hidden" label="Admission ID" placeholder="Filter" value={filters.admissionId} data-filter="admissionId" onchange={handleFilterInput}></lightning-input>
                             </th>
                             <th>
@@ -93,11 +93,11 @@
                 <tbody>
                     <template for:each={records} for:item="row">
                         <tr key={row.id}>
-                            <td class="slds-text-align_center">
+                            <td class="slds-text-align_center sticky-col sticky-col-actions">
                                 <lightning-button-icon icon-name="utility:edit" alternative-text="Edit" title="Edit" size="x-small" data-id={row.id} onclick={handleEditClick}></lightning-button-icon>
                                 <lightning-button-icon icon-name="utility:preview" alternative-text="View" title="View" size="x-small" data-id={row.id} onclick={handleViewClick}></lightning-button-icon>
                             </td>
-                            <td><div class="slds-truncate" title={row.admissionId}>{row.admissionId}</div></td>
+                            <td class="sticky-col sticky-col-admission-id"><div class="slds-truncate" title={row.admissionId}>{row.admissionId}</div></td>
                             <td><div class="slds-truncate" title={row.mbcId}>{row.mbcId}</div></td>
                             <td><div class="slds-truncate">{row.admissionDate}</div></td>
                             <td><div class="slds-truncate">{row.dischargeDate}</div></td>
