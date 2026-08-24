@@ -7,32 +7,45 @@
         <template if:true={errorMessage}>
             <div class="slds-text-color_error slds-p-bottom_small">{errorMessage}</div>
         </template>
-        <div class="slds-scrollable_x">
-            <table class="slds-table slds-table_bordered slds-table_striped">
+        <div class="table-container">
+            <table class="slds-table slds-table_bordered slds-table_striped reviews-table">
                 <thead>
                     <tr>
-                        <th><div class="slds-truncate">Name</div></th>
-                        <th><div class="slds-truncate">Record Type</div></th>
-                        <th><div class="slds-truncate">Created By</div></th>
-                        <th><div class="slds-truncate">Created Date</div></th>
-                        <th><div class="slds-truncate">Last Modified Date</div></th>
+                        <th class="slds-text-align_center action-col sticky-col sticky-col-actions"><div class="slds-truncate">Actions</div></th>
+                        <th class="review-date-col sticky-col sticky-col-review-date"><div class="slds-truncate">Review Date</div></th>
+                        <th><div class="slds-truncate">Review Type</div></th>
+                        <th><div class="slds-truncate">Supervisor</div></th>
+                        <th><div class="slds-truncate">Chart - MBC ID</div></th>
+                        <th><div class="slds-truncate">Chart - Patient Name</div></th>
+                        <th><div class="slds-truncate">Chart - Current Service Facility</div></th>
+                        <th><div class="slds-truncate">Chart - Primary Counselor</div></th>
+                        <th><div class="slds-truncate">Chart - Realm</div></th>
+                        <th><div class="slds-truncate">Related Chart</div></th>
                     </tr>
                 </thead>
                 <tbody>
                     <template for:each={records} for:item="row">
                         <tr key={row.id}>
-                            <td>
-                                <a class="slds-text-link" tabindex="0" data-id={row.id} onclick={handleRowClick}>{row.name}</a>
+                            <td class="slds-text-align_center sticky-col sticky-col-actions">
+                                <lightning-button-icon icon-name="utility:edit" alternative-text="Edit" title="Edit" size="x-small" data-id={row.id} onclick={handleEditClick}></lightning-button-icon>
+                                <lightning-button-icon icon-name="utility:preview" alternative-text="View" title="View" size="x-small" data-id={row.id} onclick={handleViewClick}></lightning-button-icon>
                             </td>
-                            <td>{row.recordTypeName}</td>
-                            <td>{row.createdByName}</td>
-                            <td><lightning-formatted-date-time value={row.createdDate}></lightning-formatted-date-time></td>
-                            <td><lightning-formatted-date-time value={row.lastModifiedDate}></lightning-formatted-date-time></td>
+                            <td class="sticky-col sticky-col-review-date"><div class="slds-truncate">{row.reviewDate}</div></td>
+                            <td><div class="slds-truncate" title={row.reviewType}>{row.reviewType}</div></td>
+                            <td><div class="slds-truncate" title={row.supervisor}>{row.supervisor}</div></td>
+                            <td><div class="slds-truncate" title={row.chartMbcId}>{row.chartMbcId}</div></td>
+                            <td><div class="slds-truncate" title={row.chartPatientName}>{row.chartPatientName}</div></td>
+                            <td><div class="slds-truncate" title={row.chartCurrentServiceFacility}>{row.chartCurrentServiceFacility}</div></td>
+                            <td><div class="slds-truncate" title={row.chartPrimaryCounselor}>{row.chartPrimaryCounselor}</div></td>
+                            <td><div class="slds-truncate" title={row.chartRealm}>{row.chartRealm}</div></td>
+                            <td>
+                                <a class="slds-text-link" tabindex="0" data-id={row.chartId} onclick={handleChartClick}>{row.chartName}</a>
+                            </td>
                         </tr>
                     </template>
                     <template if:true={hasNoRecords}>
                         <tr>
-                            <td colspan="5" class="slds-text-align_center slds-p-around_medium">No reviews found.</td>
+                            <td colspan="10" class="slds-text-align_center slds-p-around_medium">No reviews found.</td>
                         </tr>
                     </template>
                 </tbody>

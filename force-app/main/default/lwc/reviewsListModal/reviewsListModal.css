@@ -1,0 +1,60 @@
+.table-container {
+    max-height: 24rem;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.reviews-table {
+    table-layout: auto;
+}
+
+.reviews-table th,
+.reviews-table td {
+    min-width: 9rem;
+}
+
+.reviews-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: #6b6d70;
+    color: #ffffff;
+    white-space: nowrap;
+    padding: 0.5rem 0.75rem;
+}
+
+.action-col {
+    width: 6rem;
+    min-width: 6rem;
+    max-width: 6rem;
+    white-space: nowrap;
+}
+
+.review-date-col {
+    min-width: 7rem;
+}
+
+/* Freeze the Actions + Review Date columns while scrolling horizontally.
+   sticky-col-review-date's left offset must exactly match action-col's
+   locked width (both set to 6rem) - otherwise the two frozen columns
+   overlap and clip each other's content. */
+.sticky-col {
+    position: sticky;
+    background-color: #ffffff;
+}
+
+.sticky-col-actions {
+    left: 0;
+    z-index: 1;
+}
+
+.sticky-col-review-date {
+    left: 6rem;
+    z-index: 1;
+    box-shadow: 2px 0 4px -2px rgba(0, 0, 0, 0.35);
+}
+
+.reviews-table thead .sticky-col {
+    z-index: 3;
+    background-color: #6b6d70;
+}

@@ -1,11 +1,10 @@
 import { api } from 'lwc';
 import LightningModal from 'lightning/modal';
-import { NavigationMixin } from 'lightning/navigation';
 import getReviews from '@salesforce/apex/ReviewListController.getReviews';
 
 const DEFAULT_PAGE_SIZE = 25;
 
-export default class ReviewsListModal extends NavigationMixin(LightningModal) {
+export default class ReviewsListModal extends LightningModal {
     @api admissionId;
     @api reviewType;
     @api modalTitle = 'Reviews';
@@ -76,16 +75,25 @@ export default class ReviewsListModal extends NavigationMixin(LightningModal) {
         }
     }
 
-    handleRowClick(event) {
+    // NavigationMixin doesn't reliably fire from inside a component opened
+    // via LightningModal.open() - the modal renders into a separate DOM
+    // branch that the platform's navigation listener doesn't see. So instead
+    // of navigating here, close with a description of the intended
+    // navigation and let the parent (a normal part of the page tree, where
+    // NavigationMixin already works) perform it after the modal is gone.
+    handleEditClick(event) {
         const recordId = event.currentTarget.dataset.id;
-        this[NavigationMixin.Navigate]({
-            type: 'standard__recordPage',
-            attributes: {
-                recordId,
-                objectApiName: 'Review__c',
-                actionName: 'view'
-            }
-        });
+        this.close({ action: 'navigate', objectApiName: 'Review__c', actionName: 'edit', recordId });
+    }
+
+    handleViewClick(event) {
+        const recordId = event.currentTarget.dataset.id;
+        this.close({ action: 'navigate', objectApiName: 'Review__c', actionName: 'view', recordId });
+    }
+
+    handleChartClick(event) {
+        const recordId = event.currentTarget.dataset.id;
+        this.close({ action: 'navigate', objectApiName: 'Opportunity', actionName: 'view', recordId });
     }
 
     handleClose() {

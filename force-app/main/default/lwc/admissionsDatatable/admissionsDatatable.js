@@ -180,13 +180,27 @@ export default class AdmissionsDatatable extends NavigationMixin(LightningElemen
         }
     }
 
-    openReviewsList(recordId, reviewType, modalTitle) {
-        return ReviewsListModal.open({
+    async openReviewsList(recordId, reviewType, modalTitle) {
+        const result = await ReviewsListModal.open({
             size: 'large',
             admissionId: recordId,
             reviewType,
             modalTitle
         });
+        // The modal can't reliably use NavigationMixin itself (its content
+        // renders into a separate DOM branch), so it reports back what the
+        // user wants to do and this component - a normal part of the page
+        // tree - performs the actual navigation once the modal is closed.
+        if (result?.action === 'navigate') {
+            this[NavigationMixin.Navigate]({
+                type: 'standard__recordPage',
+                attributes: {
+                    recordId: result.recordId,
+                    objectApiName: result.objectApiName,
+                    actionName: result.actionName
+                }
+            });
+        }
     }
 
     handleReviewsLinkClick(event) {
