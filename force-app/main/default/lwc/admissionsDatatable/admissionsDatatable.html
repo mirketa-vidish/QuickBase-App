@@ -14,7 +14,16 @@
                 alternative-text="Toggle Filters"
                 title="Toggle Filters"
                 variant={filterIconVariant}
+                class="slds-m-right_x-small"
                 onclick={toggleFilters}>
+            </lightning-button-icon>
+            <lightning-button-icon
+                icon-name="utility:download"
+                alternative-text="Export"
+                title="Export filtered data to CSV"
+                variant="border-filled"
+                disabled={isExporting}
+                onclick={handleExportClick}>
             </lightning-button-icon>
         </div>
 

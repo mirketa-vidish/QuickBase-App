@@ -1,6 +1,7 @@
 import { LightningElement, wire } from 'lwc';
 import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
 import getAdmissions from '@salesforce/apex/AdmissionDatatableController.getAdmissions';
+import exportAdmissions from '@salesforce/apex/AdmissionDatatableController.exportAdmissions';
 import ReviewsListModal from 'c/reviewsListModal';
 import AddReviewModal from 'c/addReviewModal';
 
@@ -8,6 +9,23 @@ const PAGE_SIZE_OPTIONS = [10, 25, 50, 100].map((n) => ({ label: String(n), valu
 const FILTER_DEBOUNCE_MS = 400;
 const RT_ADMISSION_REVIEW = 'Admission_Review';
 const RT_ONGOING_REVIEW = 'Ongoing_Review';
+const EXPORT_COLUMNS = [
+    { label: 'Admission ID', field: 'admissionId' },
+    { label: 'MBC ID', field: 'mbcId' },
+    { label: 'Admission Date', field: 'admissionDate' },
+    { label: 'Discharge Date', field: 'dischargeDate' },
+    { label: 'Status', field: 'status' },
+    { label: 'Patient Name', field: 'patientName' },
+    { label: 'Program', field: 'program' },
+    { label: 'Current Service Facility', field: 'currentServiceFacility' },
+    { label: 'Current Level Of Care', field: 'currentLevelOfCare' },
+    { label: 'Realm', field: 'realm' },
+    { label: 'Primary Counselor', field: 'primaryCounselor' },
+    { label: 'Combined Text Supervisor', field: 'combinedTextSupervisor' },
+    { label: '# of Admission Reviews', field: 'admissionReviewCount' },
+    { label: '# of Ongoing Reviews', field: 'ongoingReviewCount' },
+    { label: '# of All Reviews', field: 'allReviewCount' }
+];
 
 export default class AdmissionsDatatable extends NavigationMixin(LightningElement) {
     records = [];
@@ -19,6 +37,7 @@ export default class AdmissionsDatatable extends NavigationMixin(LightningElemen
     showFilters = false;
     filters = {};
     isLoading = false;
+    isExporting = false;
     errorMessage;
 
     pageSizeOptions = PAGE_SIZE_OPTIONS;
@@ -93,6 +112,59 @@ export default class AdmissionsDatatable extends NavigationMixin(LightningElemen
 
     handleRefreshClick() {
         this.loadData();
+    }
+
+    async handleExportClick() {
+        this.isExporting = true;
+        this.errorMessage = undefined;
+        try {
+            const rows = await exportAdmissions({
+                filters: this.filters,
+                sortField: this.sortField,
+                sortDirection: this.sortDirection
+            });
+            this.downloadCsv(this.buildCsv(rows), 'admissions_export.csv');
+        } catch (error) {
+            // eslint-disable-next-line no-console
+            console.error('[admissionsDatatable] export failed', error);
+            this.errorMessage = error?.body?.message || error?.message || 'Failed to export admissions.';
+        } finally {
+            this.isExporting = false;
+        }
+    }
+
+    buildCsv(rows) {
+        const lines = [EXPORT_COLUMNS.map((col) => this.csvEscape(col.label)).join(',')];
+        rows.forEach((row) => {
+            lines.push(EXPORT_COLUMNS.map((col) => this.csvEscape(row[col.field])).join(','));
+        });
+        return lines.join('\r\n');
+    }
+
+    csvEscape(value) {
+        if (value === null || value === undefined) {
+            return '';
+        }
+        const str = String(value);
+        return /[",\r\n]/.test(str) ? `"${str.replace(/"/g, '""')}"` : str;
+    }
+
+    downloadCsv(csvContent, fileName) {
+        // Lightning Web Security validates Blob MIME types against an
+        // allowlist that excludes 'text/csv' entirely (with or without a
+        // charset parameter). 'text/plain' is accepted, and the saved
+        // file's association still comes from the .csv filename extension
+        // on the download link below, not this MIME type.
+        const bom = String.fromCharCode(0xfeff);
+        const blob = new Blob([bom + csvContent], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
     }
 
     handleFilterInput(event) {

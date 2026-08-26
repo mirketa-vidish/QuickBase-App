@@ -70,6 +70,9 @@ public with sharing class AdmissionDatatableController {
     };
 
     private static final Integer DEFAULT_PAGE_SIZE = 25;
+    // Safety cap on CSV export size - keeps a single export well inside
+    // governor limits regardless of how many Admissions match the filters.
+    private static final Integer EXPORT_MAX_ROWS = 2000;
 
     public class TableResult {
         @AuraEnabled public List<AdmissionRow> records;
@@ -124,8 +127,45 @@ public with sharing class AdmissionDatatableController {
         String countQuery = 'SELECT COUNT() FROM Opportunity' + whereClause;
         Integer total = Database.countQueryWithBinds(countQuery, binds, AccessLevel.USER_MODE);
 
+        TableResult result = new TableResult();
+        result.records = fetchRows(whereClause, binds, orderByField, orderByDir, effectivePageSize, offset);
+        result.totalRecords = total;
+        return result;
+    }
+
+    /**
+     * All matching Admissions for the current filters/sort (capped at
+     * EXPORT_MAX_ROWS), for the Export button - not paginated like
+     * getAdmissions since an export needs every matching row, not just the
+     * current page.
+     */
+    @AuraEnabled
+    public static List<AdmissionRow> exportAdmissions(
+        Map<String, String> filters,
+        String sortField,
+        String sortDirection
+    ) {
+        Map<String, Object> binds = new Map<String, Object>();
+        String whereClause = buildWhereClause(filters, binds);
+
+        String orderByField = SORT_FIELD_MAP.containsKey(sortField)
+            ? SORT_FIELD_MAP.get(sortField)
+            : 'Admission_Date__c';
+        String orderByDir = 'ASC'.equalsIgnoreCase(sortDirection) ? 'ASC' : 'DESC';
+
+        return fetchRows(whereClause, binds, orderByField, orderByDir, EXPORT_MAX_ROWS, 0);
+    }
+
+    private static List<AdmissionRow> fetchRows(
+        String whereClause,
+        Map<String, Object> binds,
+        String orderByField,
+        String orderByDir,
+        Integer limitSize,
+        Integer offset
+    ) {
         Map<String, Object> dataBinds = new Map<String, Object>(binds);
-        dataBinds.put('limitSize', effectivePageSize);
+        dataBinds.put('limitSize', limitSize);
         dataBinds.put('offsetSize', offset);
 
         String dataQuery = 'SELECT Id, Admission_ID__c, MBC_ID__c, Admission_Date__c, Discharge_Date__c, StageName, ' +
@@ -190,10 +230,7 @@ public with sharing class AdmissionDatatableController {
             }
         }
 
-        TableResult result = new TableResult();
-        result.records = rows;
-        result.totalRecords = total;
-        return result;
+        return rows;
     }
 
     private static String buildWhereClause(Map<String, String> filters, Map<String, Object> binds) {

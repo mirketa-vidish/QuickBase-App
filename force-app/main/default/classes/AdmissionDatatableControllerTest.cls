@@ -85,4 +85,35 @@ private class AdmissionDatatableControllerTest {
 
         System.assertEquals(1, result.totalRecords);
     }
+
+    @isTest
+    static void testExportAdmissionsReturnsAllMatchingRowsUnpaginated() {
+        createAdmission('A-4001', 'Active');
+        createAdmission('A-4002', 'Active');
+
+        Test.startTest();
+        List<AdmissionDatatableController.AdmissionRow> rows = AdmissionDatatableController.exportAdmissions(
+            null, null, null
+        );
+        Test.stopTest();
+
+        System.assertEquals(2, rows.size());
+    }
+
+    @isTest
+    static void testExportAdmissionsAppliesFilters() {
+        createAdmission('A-5001', 'Active');
+        createAdmission('A-5002', 'Discharged');
+
+        Map<String, String> filters = new Map<String, String>{ 'admissionId' => 'A-5002' };
+
+        Test.startTest();
+        List<AdmissionDatatableController.AdmissionRow> rows = AdmissionDatatableController.exportAdmissions(
+            filters, null, null
+        );
+        Test.stopTest();
+
+        System.assertEquals(1, rows.size());
+        System.assertEquals('A-5002', rows[0].admissionId);
+    }
 }
