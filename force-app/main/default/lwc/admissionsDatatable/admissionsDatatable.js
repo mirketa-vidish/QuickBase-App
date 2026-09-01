@@ -22,6 +22,7 @@ const EXPORT_COLUMNS = [
     { label: 'Realm', field: 'realm' },
     { label: 'Primary Counselor', field: 'primaryCounselor' },
     { label: 'Combined Text Supervisor', field: 'combinedTextSupervisor' },
+    { label: 'MRI', field: 'mri' },
     { label: '# of Admission Reviews', field: 'admissionReviewCount' },
     { label: '# of Ongoing Reviews', field: 'ongoingReviewCount' },
     { label: '# of All Reviews', field: 'allReviewCount' }

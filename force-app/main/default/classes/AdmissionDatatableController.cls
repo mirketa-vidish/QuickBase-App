@@ -37,14 +37,15 @@ public with sharing class AdmissionDatatableController {
         'mbcId' => 'MBC_ID__c',
         'admissionDate' => 'Admission_Date__c',
         'dischargeDate' => 'Discharge_Date__c',
-        'status' => 'StageName',
+        'status' => 'Status__c',
         'patientName' => 'Client_Last_Name__c, Client_First_Name__c',
         'program' => 'Program__c',
         'currentServiceFacility' => 'Facility_Approved__c',
         // No single field to sort by - falls back to the default sort field.
         'realm' => 'Anticipated_Realm__c',
         'primaryCounselor' => 'CreatedBy.Name',
-        'combinedTextSupervisor' => 'LastModifiedBy.Name'
+        'combinedTextSupervisor' => 'LastModifiedBy.Name',
+        'mri' => 'MRI__c'
     };
 
     // Logical filter key -> Opportunity field API name, for simple
@@ -54,12 +55,13 @@ public with sharing class AdmissionDatatableController {
     private static final Map<String, String> TEXT_FILTER_FIELDS = new Map<String, String>{
         'admissionId' => 'Admission_ID__c',
         'mbcId' => 'MBC_ID__c',
-        'status' => 'StageName',
+        'status' => 'Status__c',
         'program' => 'Program__c',
         'currentServiceFacility' => 'Facility_Approved__c',
         'realm' => 'Anticipated_Realm__c',
         'primaryCounselor' => 'CreatedBy.Name',
-        'combinedTextSupervisor' => 'LastModifiedBy.Name'
+        'combinedTextSupervisor' => 'LastModifiedBy.Name',
+        'mri' => 'MRI__c'
     };
 
     // Logical filter key -> Opportunity date field API name, matched by
@@ -93,6 +95,7 @@ public with sharing class AdmissionDatatableController {
         @AuraEnabled public String realm;
         @AuraEnabled public String primaryCounselor;
         @AuraEnabled public String combinedTextSupervisor;
+        @AuraEnabled public String mri;
         @AuraEnabled public Integer admissionReviewCount = 0;
         @AuraEnabled public Integer ongoingReviewCount = 0;
         @AuraEnabled public Integer allReviewCount = 0;
@@ -168,10 +171,10 @@ public with sharing class AdmissionDatatableController {
         dataBinds.put('limitSize', limitSize);
         dataBinds.put('offsetSize', offset);
 
-        String dataQuery = 'SELECT Id, Admission_ID__c, MBC_ID__c, Admission_Date__c, Discharge_Date__c, StageName, ' +
+        String dataQuery = 'SELECT Id, Admission_ID__c, MBC_ID__c, Admission_Date__c, Discharge_Date__c, Status__c, ' +
             'Client_First_Name__c, Client_Middle_Name__c, Client_Last_Name__c, ' +
             'Program__c, Facility_Approved__c, Admitted_Level_of_Care__c, Discharged_Level_of_Care__c, Anticipated_Realm__c, ' +
-            'CreatedBy.Name, LastModifiedBy.Name ' +
+            'CreatedBy.Name, LastModifiedBy.Name, MRI__c ' +
             'FROM Opportunity' + whereClause +
             ' ORDER BY ' + orderByField + ' ' + orderByDir +
             ' LIMIT :limitSize OFFSET :offsetSize';
@@ -187,7 +190,7 @@ public with sharing class AdmissionDatatableController {
             row.mbcId = toStringValue(o.get('MBC_ID__c'));
             row.admissionDate = (Date) o.get('Admission_Date__c');
             row.dischargeDate = (Date) o.get('Discharge_Date__c');
-            row.status = toStringValue(o.get('StageName'));
+            row.status = toStringValue(o.get('Status__c'));
             row.patientName = buildPatientName(o);
             row.program = toStringValue(o.get('Program__c'));
             row.currentServiceFacility = toStringValue(o.get('Facility_Approved__c'));
@@ -197,6 +200,7 @@ public with sharing class AdmissionDatatableController {
             row.realm = toStringValue(o.get('Anticipated_Realm__c'));
             row.primaryCounselor = getRelatedName(o, 'CreatedBy');
             row.combinedTextSupervisor = getRelatedName(o, 'LastModifiedBy');
+            row.mri = toStringValue(o.get('MRI__c'));
             rows.add(row);
             rowById.put(row.id, row);
         }

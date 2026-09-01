@@ -52,6 +52,7 @@
                         <th onclick={handleSort} data-field="realm"><div class="slds-truncate">Realm</div></th>
                         <th onclick={handleSort} data-field="primaryCounselor"><div class="slds-truncate">Primary Counselor</div></th>
                         <th onclick={handleSort} data-field="combinedTextSupervisor"><div class="slds-truncate">Combined Text Supervisor</div></th>
+                        <th onclick={handleSort} data-field="mri"><div class="slds-truncate">MRI</div></th>
                         <th><div class="slds-truncate">Reviews</div></th>
                         <th><div class="slds-truncate">Add Review</div></th>
                         <th class="slds-text-align_center"><div class="slds-truncate"># of Admission Reviews</div></th>
@@ -97,6 +98,9 @@
                             <th>
                                 <lightning-input type="text" variant="label-hidden" label="Combined Text Supervisor" placeholder="Filter" value={filters.combinedTextSupervisor} data-filter="combinedTextSupervisor" onchange={handleFilterInput}></lightning-input>
                             </th>
+                            <th>
+                                <lightning-input type="text" variant="label-hidden" label="MRI" placeholder="Filter" value={filters.mri} data-filter="mri" onchange={handleFilterInput}></lightning-input>
+                            </th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -126,6 +130,7 @@
                             <td><div class="slds-truncate" title={row.realm}>{row.realm}</div></td>
                             <td><div class="slds-truncate" title={row.primaryCounselor}>{row.primaryCounselor}</div></td>
                             <td><div class="slds-truncate" title={row.combinedTextSupervisor}>{row.combinedTextSupervisor}</div></td>
+                            <td><div class="slds-truncate" title={row.mri}>{row.mri}</div></td>
                             <td>
                                 <a class="slds-text-link" tabindex="0" data-id={row.id} onclick={handleReviewsLinkClick}>Reviews</a>
                             </td>
@@ -145,7 +150,7 @@
                     </template>
                     <template if:true={hasNoRecords}>
                         <tr>
-                            <td colspan="18" class="slds-text-align_center slds-p-around_medium">No admissions found.</td>
+                            <td colspan="19" class="slds-text-align_center slds-p-around_medium">No admissions found.</td>
                         </tr>
                     </template>
                 </tbody>
