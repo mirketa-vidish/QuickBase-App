@@ -4,6 +4,7 @@ import getAdmissions from '@salesforce/apex/AdmissionDatatableController.getAdmi
 import exportAdmissions from '@salesforce/apex/AdmissionDatatableController.exportAdmissions';
 import ReviewsListModal from 'c/reviewsListModal';
 import AddReviewModal from 'c/addReviewModal';
+import ImportAdmissionsModal from 'c/importAdmissionsModal';
 
 const PAGE_SIZE_OPTIONS = [10, 25, 50, 100].map((n) => ({ label: String(n), value: String(n) }));
 const FILTER_DEBOUNCE_MS = 400;
@@ -112,6 +113,15 @@ export default class AdmissionsDatatable extends NavigationMixin(LightningElemen
     }
 
     handleRefreshClick() {
+        this.loadData();
+    }
+
+    async handleImportClick() {
+        // Always refresh after the import modal closes, regardless of how -
+        // if the user dismisses it via the modal's own built-in close icon
+        // instead of our Close button, that resolves differently and would
+        // otherwise skip the refresh even after a successful import.
+        await ImportAdmissionsModal.open({ size: 'large' });
         this.loadData();
     }
 

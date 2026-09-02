@@ -5,6 +5,8 @@
         <members>AdmissionDatatableControllerTest</members>
         <members>ReviewListController</members>
         <members>ReviewListControllerTest</members>
+        <members>AdmissionImportController</members>
+        <members>AdmissionImportControllerTest</members>
         <name>ApexClass</name>
     </types>
 
@@ -12,6 +14,7 @@
         <members>admissionsDatatable</members>
         <members>reviewsListModal</members>
         <members>addReviewModal</members>
+        <members>importAdmissionsModal</members>
         <name>LightningComponentBundle</name>
     </types>
 

@@ -14,7 +14,7 @@ private class AdmissionDatatableControllerTest {
         opp.put('CloseDate', Date.today().addMonths(1));
         opp.put('Admission_ID__c', admissionId);
         opp.put('MBC_ID__c', 'MBC-' + admissionId);
-        opp.put('Admission_Date__c', Date.today());
+        opp.put('Admitted_Date__c', Date.today());
         insert opp;
         return (Id) opp.get('Id');
     }

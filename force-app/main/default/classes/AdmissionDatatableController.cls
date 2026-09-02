@@ -35,7 +35,7 @@ public with sharing class AdmissionDatatableController {
     private static final Map<String, String> SORT_FIELD_MAP = new Map<String, String>{
         'admissionId' => 'Admission_ID__c',
         'mbcId' => 'MBC_ID__c',
-        'admissionDate' => 'Admission_Date__c',
+        'admissionDate' => 'Admitted_Date__c',
         'dischargeDate' => 'Discharge_Date__c',
         'status' => 'Status__c',
         'patientName' => 'Client_Last_Name__c, Client_First_Name__c',
@@ -67,7 +67,7 @@ public with sharing class AdmissionDatatableController {
     // Logical filter key -> Opportunity date field API name, matched by
     // exact date (one filter box per column, same as the QuickBase table).
     private static final Map<String, String> DATE_FILTER_FIELDS = new Map<String, String>{
-        'admissionDate' => 'Admission_Date__c',
+        'admissionDate' => 'Admitted_Date__c',
         'dischargeDate' => 'Discharge_Date__c'
     };
 
@@ -124,7 +124,7 @@ public with sharing class AdmissionDatatableController {
 
         String orderByField = SORT_FIELD_MAP.containsKey(sortField)
             ? SORT_FIELD_MAP.get(sortField)
-            : 'Admission_Date__c';
+            : 'Admitted_Date__c';
         String orderByDir = 'ASC'.equalsIgnoreCase(sortDirection) ? 'ASC' : 'DESC';
 
         String countQuery = 'SELECT COUNT() FROM Opportunity' + whereClause;
@@ -153,7 +153,7 @@ public with sharing class AdmissionDatatableController {
 
         String orderByField = SORT_FIELD_MAP.containsKey(sortField)
             ? SORT_FIELD_MAP.get(sortField)
-            : 'Admission_Date__c';
+            : 'Admitted_Date__c';
         String orderByDir = 'ASC'.equalsIgnoreCase(sortDirection) ? 'ASC' : 'DESC';
 
         return fetchRows(whereClause, binds, orderByField, orderByDir, EXPORT_MAX_ROWS, 0);
@@ -171,7 +171,7 @@ public with sharing class AdmissionDatatableController {
         dataBinds.put('limitSize', limitSize);
         dataBinds.put('offsetSize', offset);
 
-        String dataQuery = 'SELECT Id, Admission_ID__c, MBC_ID__c, Admission_Date__c, Discharge_Date__c, Status__c, ' +
+        String dataQuery = 'SELECT Id, Admission_ID__c, MBC_ID__c, Admitted_Date__c, Discharge_Date__c, Status__c, ' +
             'Client_First_Name__c, Client_Middle_Name__c, Client_Last_Name__c, ' +
             'Program__c, Facility_Approved__c, Admitted_Level_of_Care__c, Discharged_Level_of_Care__c, Anticipated_Realm__c, ' +
             'CreatedBy.Name, LastModifiedBy.Name, MRI__c ' +
@@ -188,7 +188,7 @@ public with sharing class AdmissionDatatableController {
             row.id = (Id) o.get('Id');
             row.admissionId = toStringValue(o.get('Admission_ID__c'));
             row.mbcId = toStringValue(o.get('MBC_ID__c'));
-            row.admissionDate = (Date) o.get('Admission_Date__c');
+            row.admissionDate = (Date) o.get('Admitted_Date__c');
             row.dischargeDate = (Date) o.get('Discharge_Date__c');
             row.status = toStringValue(o.get('Status__c'));
             row.patientName = buildPatientName(o);

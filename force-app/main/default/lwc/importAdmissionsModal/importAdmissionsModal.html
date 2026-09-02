@@ -1,0 +1,59 @@
+<template>
+    <lightning-modal-header label="Import Admissions"></lightning-modal-header>
+    <lightning-modal-body>
+        <p class="slds-p-bottom_small">
+            Upload a CSV file to update existing Admissions. Each row is matched to a record by the Salesforce Id
+            in the "Opportunity Legacy Id" column - this always updates existing records and never creates new ones.
+        </p>
+
+        <lightning-input type="file" label="CSV File" accept=".csv" onchange={handleFileChange}></lightning-input>
+
+        <template if:true={errorMessage}>
+            <div class="slds-text-color_error slds-p-top_small">{errorMessage}</div>
+        </template>
+
+        <template if:true={hasFile}>
+            <p class="slds-p-top_small">{fileName} - {recordCount} record(s) ready to import.</p>
+        </template>
+
+        <template if:true={isProcessing}>
+            <lightning-spinner alternative-text="Importing" size="small"></lightning-spinner>
+        </template>
+
+        <template if:true={hasResults}>
+            <div class="slds-p-top_small">
+                <p>
+                    <strong>{successCount}</strong> updated successfully, <strong>{failureCount}</strong> failed.
+                </p>
+                <template if:true={hasFailures}>
+                    <div class="slds-scrollable_x">
+                        <table class="slds-table slds-table_bordered slds-table_striped">
+                            <thead>
+                                <tr>
+                                    <th><div class="slds-truncate">Row</div></th>
+                                    <th><div class="slds-truncate">Opportunity Id</div></th>
+                                    <th><div class="slds-truncate">Error</div></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={failedResults} for:item="row">
+                                    <tr key={row.rowNumber}>
+                                        <td>{row.rowNumber}</td>
+                                        <td>{row.opportunityId}</td>
+                                        <td>{row.errorMessage}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button label="Close" onclick={handleClose}></lightning-button>
+        <template if:false={hasImported}>
+            <lightning-button label="Import" variant="brand" class="slds-m-left_x-small" disabled={isImportDisabled} onclick={handleImportClick}></lightning-button>
+        </template>
+    </lightning-modal-footer>
+</template>
