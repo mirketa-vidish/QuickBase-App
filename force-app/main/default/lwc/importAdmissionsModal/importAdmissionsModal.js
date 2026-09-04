@@ -19,6 +19,14 @@ const HEADER_MAP = {
     realm: 'realm'
 };
 const DATE_FIELDS = new Set(['admittedDate', 'dischargeDate']);
+// Some automation on Opportunity (a trigger/Flow outside this component's
+// control) appears to run a SOQL query per record rather than being
+// bulkified, which trips the 100-queries-per-transaction limit right around
+// 100 rows in a single Database.update(). Each separate imperative Apex
+// call is its own transaction with governor limits reset, so sending rows
+// in smaller chunks across multiple sequential calls works around it
+// regardless of what's actually consuming those queries.
+const IMPORT_CHUNK_SIZE = 50;
 
 export default class ImportAdmissionsModal extends LightningModal {
     fileName;
@@ -27,6 +35,7 @@ export default class ImportAdmissionsModal extends LightningModal {
     isProcessing = false;
     hasImported = false;
     errorMessage;
+    progressLabel;
 
     get hasFile() {
         return this.parsedRows.length > 0;
@@ -91,14 +100,40 @@ export default class ImportAdmissionsModal extends LightningModal {
     async handleImportClick() {
         this.isProcessing = true;
         this.errorMessage = undefined;
+        this.results = [];
+
+        const chunks = this.chunkRows(this.parsedRows, IMPORT_CHUNK_SIZE);
         try {
-            this.results = await updateAdmissions({ rows: this.parsedRows });
+            for (let i = 0; i < chunks.length; i++) {
+                this.progressLabel = chunks.length > 1
+                    ? `Importing ${i + 1} of ${chunks.length} batches...`
+                    : undefined;
+                // Sequential, not Promise.all - each call must complete
+                // (and its transaction end) before the next one starts.
+                // eslint-disable-next-line no-await-in-loop
+                const chunkResults = await updateAdmissions({ rows: chunks[i] });
+                // Each Apex call restarts its row-number counter at 1, so
+                // offset it back to the row's real position in the full file.
+                const offset = i * IMPORT_CHUNK_SIZE;
+                this.results = this.results.concat(
+                    chunkResults.map((r) => ({ ...r, rowNumber: r.rowNumber + offset }))
+                );
+            }
             this.hasImported = true;
         } catch (error) {
             this.errorMessage = error?.body?.message || 'Import failed.';
         } finally {
+            this.progressLabel = undefined;
             this.isProcessing = false;
         }
+    }
+
+    chunkRows(rows, size) {
+        const chunks = [];
+        for (let i = 0; i < rows.length; i += size) {
+            chunks.push(rows.slice(i, i + size));
+        }
+        return chunks;
     }
 
     handleClose() {

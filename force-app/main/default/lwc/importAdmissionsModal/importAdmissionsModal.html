@@ -18,6 +18,9 @@
 
         <template if:true={isProcessing}>
             <lightning-spinner alternative-text="Importing" size="small"></lightning-spinner>
+            <template if:true={progressLabel}>
+                <p class="slds-text-align_center slds-p-top_small">{progressLabel}</p>
+            </template>
         </template>
 
         <template if:true={hasResults}>
