@@ -24,16 +24,12 @@ public with sharing class AdmissionDatatableController {
         'Client_First_Name__c', 'Client_Middle_Name__c', 'Client_Last_Name__c'
     };
 
-    // Current Level Of Care is not a single field either - it's
-    // Discharged_Level_of_Care__c when the Admission has a Discharge Date,
-    // otherwise Admitted_Level_of_Care__c.
-    private static final String LOC_DISCHARGED_FIELD = 'Discharged_Level_of_Care__c';
-    private static final String LOC_ADMITTED_FIELD = 'Admitted_Level_of_Care__c';
-
     // Logical column key -> Opportunity field API name (used for both the
-    // SELECT list and for sorting).
+    // SELECT list and for sorting). admissionId sorts/filters by the actual
+    // record Id, not a text field - LIKE isn't supported on Id, so it's
+    // special-cased (exact match) in buildWhereClause below.
     private static final Map<String, String> SORT_FIELD_MAP = new Map<String, String>{
-        'admissionId' => 'Admission_ID__c',
+        'admissionId' => 'Id',
         'mbcId' => 'MBC_ID__c',
         'admissionDate' => 'Admitted_Date__c',
         'dischargeDate' => 'Discharge_Date__c',
@@ -41,25 +37,26 @@ public with sharing class AdmissionDatatableController {
         'patientName' => 'Client_Last_Name__c, Client_First_Name__c',
         'program' => 'Program__c',
         'currentServiceFacility' => 'Facility_Approved__c',
-        // No single field to sort by - falls back to the default sort field.
+        'currentLevelOfCare' => 'Current_Level_Of_Care__c',
         'realm' => 'Anticipated_Realm__c',
-        'primaryCounselor' => 'CreatedBy.Name',
+        'primaryCounselor' => 'Primary_Counselor__c',
         'combinedTextSupervisor' => 'LastModifiedBy.Name',
         'mri' => 'MRI__c'
     };
 
     // Logical filter key -> Opportunity field API name, for simple
-    // case-insensitive "contains" text filters. Patient Name and Current
-    // Level Of Care are handled separately in buildWhereClause since each
-    // spans more than one underlying field.
+    // case-insensitive "contains" text filters. Patient Name and Admission
+    // Id are handled separately in buildWhereClause (Patient Name spans more
+    // than one field; Admission Id is now the actual record Id, which only
+    // supports exact match, not LIKE).
     private static final Map<String, String> TEXT_FILTER_FIELDS = new Map<String, String>{
-        'admissionId' => 'Admission_ID__c',
         'mbcId' => 'MBC_ID__c',
         'status' => 'Status__c',
         'program' => 'Program__c',
         'currentServiceFacility' => 'Facility_Approved__c',
+        'currentLevelOfCare' => 'Current_Level_Of_Care__c',
         'realm' => 'Anticipated_Realm__c',
-        'primaryCounselor' => 'CreatedBy.Name',
+        'primaryCounselor' => 'Primary_Counselor__c',
         'combinedTextSupervisor' => 'LastModifiedBy.Name',
         'mri' => 'MRI__c'
     };
@@ -171,10 +168,10 @@ public with sharing class AdmissionDatatableController {
         dataBinds.put('limitSize', limitSize);
         dataBinds.put('offsetSize', offset);
 
-        String dataQuery = 'SELECT Id, Admission_ID__c, MBC_ID__c, Admitted_Date__c, Discharge_Date__c, Status__c, ' +
+        String dataQuery = 'SELECT Id, MBC_ID__c, Admitted_Date__c, Discharge_Date__c, Status__c, ' +
             'Client_First_Name__c, Client_Middle_Name__c, Client_Last_Name__c, ' +
-            'Program__c, Facility_Approved__c, Admitted_Level_of_Care__c, Discharged_Level_of_Care__c, Anticipated_Realm__c, ' +
-            'CreatedBy.Name, LastModifiedBy.Name, MRI__c ' +
+            'Program__c, Facility_Approved__c, Current_Level_Of_Care__c, Anticipated_Realm__c, ' +
+            'Primary_Counselor__c, LastModifiedBy.Name, MRI__c ' +
             'FROM Opportunity' + whereClause +
             ' ORDER BY ' + orderByField + ' ' + orderByDir +
             ' LIMIT :limitSize OFFSET :offsetSize';
@@ -186,7 +183,7 @@ public with sharing class AdmissionDatatableController {
         for (SObject o : opps) {
             AdmissionRow row = new AdmissionRow();
             row.id = (Id) o.get('Id');
-            row.admissionId = toStringValue(o.get('Admission_ID__c'));
+            row.admissionId = toStringValue(o.get('Id'));
             row.mbcId = toStringValue(o.get('MBC_ID__c'));
             row.admissionDate = (Date) o.get('Admitted_Date__c');
             row.dischargeDate = (Date) o.get('Discharge_Date__c');
@@ -194,11 +191,9 @@ public with sharing class AdmissionDatatableController {
             row.patientName = buildPatientName(o);
             row.program = toStringValue(o.get('Program__c'));
             row.currentServiceFacility = toStringValue(o.get('Facility_Approved__c'));
-            row.currentLevelOfCare = row.dischargeDate != null
-                ? toStringValue(o.get(LOC_DISCHARGED_FIELD))
-                : toStringValue(o.get(LOC_ADMITTED_FIELD));
+            row.currentLevelOfCare = toStringValue(o.get('Current_Level_Of_Care__c'));
             row.realm = toStringValue(o.get('Anticipated_Realm__c'));
-            row.primaryCounselor = getRelatedName(o, 'CreatedBy');
+            row.primaryCounselor = toStringValue(o.get('Primary_Counselor__c'));
             row.combinedTextSupervisor = getRelatedName(o, 'LastModifiedBy');
             row.mri = toStringValue(o.get('MRI__c'));
             rows.add(row);
@@ -256,10 +251,11 @@ public with sharing class AdmissionDatatableController {
                 }
                 conditions.add('(' + String.join(orParts, ' OR ') + ')');
                 binds.put(bindName, '%' + value + '%');
-            } else if (key == 'currentLevelOfCare') {
+            } else if (key == 'admissionId') {
+                // Id fields don't support LIKE - exact match only.
                 String bindName = 'v' + i++;
-                conditions.add('(' + LOC_ADMITTED_FIELD + ' LIKE :' + bindName + ' OR ' + LOC_DISCHARGED_FIELD + ' LIKE :' + bindName + ')');
-                binds.put(bindName, '%' + value + '%');
+                conditions.add('Id = :' + bindName);
+                binds.put(bindName, value);
             } else if (TEXT_FILTER_FIELDS.containsKey(key)) {
                 String bindName = 'v' + i++;
                 conditions.add(TEXT_FILTER_FIELDS.get(key) + ' LIKE :' + bindName);

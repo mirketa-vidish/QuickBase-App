@@ -45,7 +45,8 @@
 }
 
 .admission-id-col {
-    min-width: 7rem;
+    /* Wide enough for the full 18-char Salesforce Id now shown here. */
+    min-width: 11rem;
 }
 
 /* Freeze the Actions + Admission ID columns while scrolling horizontally.
