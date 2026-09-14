@@ -36,7 +36,7 @@ public with sharing class AdmissionDatatableController {
         'status' => 'Status__c',
         'patientName' => 'Client_Last_Name__c, Client_First_Name__c',
         'program' => 'Program__c',
-        'currentServiceFacility' => 'Facility_Approved__c',
+        'currentServiceFacility' => 'Current_Service_Facility__c',
         'currentLevelOfCare' => 'Current_Level_Of_Care__c',
         'realm' => 'Anticipated_Realm__c',
         'primaryCounselor' => 'Primary_Counselor__c',
@@ -53,7 +53,7 @@ public with sharing class AdmissionDatatableController {
         'mbcId' => 'MBC_ID__c',
         'status' => 'Status__c',
         'program' => 'Program__c',
-        'currentServiceFacility' => 'Facility_Approved__c',
+        'currentServiceFacility' => 'Current_Service_Facility__c',
         'currentLevelOfCare' => 'Current_Level_Of_Care__c',
         'realm' => 'Anticipated_Realm__c',
         'primaryCounselor' => 'Primary_Counselor__c',
@@ -170,7 +170,7 @@ public with sharing class AdmissionDatatableController {
 
         String dataQuery = 'SELECT Id, MBC_ID__c, Admitted_Date__c, Discharge_Date__c, Status__c, ' +
             'Client_First_Name__c, Client_Middle_Name__c, Client_Last_Name__c, ' +
-            'Program__c, Facility_Approved__c, Current_Level_Of_Care__c, Anticipated_Realm__c, ' +
+            'Program__c, Current_Service_Facility__c, Current_Level_Of_Care__c, Anticipated_Realm__c, ' +
             'Primary_Counselor__c, LastModifiedBy.Name, MRI__c ' +
             'FROM Opportunity' + whereClause +
             ' ORDER BY ' + orderByField + ' ' + orderByDir +
@@ -190,7 +190,7 @@ public with sharing class AdmissionDatatableController {
             row.status = toStringValue(o.get('Status__c'));
             row.patientName = buildPatientName(o);
             row.program = toStringValue(o.get('Program__c'));
-            row.currentServiceFacility = toStringValue(o.get('Facility_Approved__c'));
+            row.currentServiceFacility = toStringValue(o.get('Current_Service_Facility__c'));
             row.currentLevelOfCare = toStringValue(o.get('Current_Level_Of_Care__c'));
             row.realm = toStringValue(o.get('Anticipated_Realm__c'));
             row.primaryCounselor = toStringValue(o.get('Primary_Counselor__c'));

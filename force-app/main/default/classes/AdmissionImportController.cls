@@ -1,26 +1,24 @@
 /**
  * Bulk-updates existing Opportunity (Admission) records from an uploaded
- * CSV, per the client-provided mapping sheet (Salesforce Chart Review
- * Upload Sample.csv). Always an UPDATE - every row must carry the target
- * record's actual Salesforce Id (the CSV's "Opportunity Legacy Id" column);
- * this never creates new records.
+ * CSV, per the client-provided mapping sheet. Always an UPDATE - every row
+ * must carry the target record's actual Salesforce Id (the CSV's
+ * "Opportunity Legacy Id" column); this never creates new records.
  *
- * Column -> field mapping (blank cells in the mapping sheet are not
- * imported at all):
+ * Column -> field mapping:
  *   Opportunity Legacy Id      -> Id (match key, not a field to set)
  *   Mbc Id                     -> MBC_ID__c
- *   Mri                        -> (not mapped)
+ *   Mri                        -> Sunwave_MRI_OBHFL__c
  *   Patient Name               -> Name
  *   Patient First Name         -> Client_First_Name__c
  *   Patient Last Name          -> Client_Last_Name__c
- *   Primary Counselor          -> (not mapped)
+ *   Primary Counselor          -> Primary_Counselor__c
  *   Admission Date             -> Admitted_Date__c
  *   Discharge Date             -> Discharge_Date__c
  *   Program                    -> Program__c
- *   Admission Service Facility -> (not mapped)
+ *   Admission Service Facility -> Facility_Approved__c
  *   Admission Level Of Care    -> Admitted_Level_of_Care__c
- *   Current Service Facility Name -> Facility_Approved__c
- *   Current Level Of Care      -> (not mapped)
+ *   Current Service Facility Name -> Current_Service_Facility__c
+ *   Current Level Of Care      -> Current_Level_Of_Care__c
  *   Realm                      -> Anticipated_Realm__c
  *
  * rows is List<Map<String, Object>> rather than a custom wrapper class -
@@ -68,14 +66,18 @@ public with sharing class AdmissionImportController {
             }
 
             putIfNotBlank(opp, 'MBC_ID__c', (String) row.get('mbcId'));
+            putIfNotBlank(opp, 'Sunwave_MRI_OBHFL__c', (String) row.get('mri'));
             putIfNotBlank(opp, 'Name', (String) row.get('patientName'));
             putIfNotBlank(opp, 'Client_First_Name__c', (String) row.get('clientFirstName'));
             putIfNotBlank(opp, 'Client_Last_Name__c', (String) row.get('clientLastName'));
+            putIfNotBlank(opp, 'Primary_Counselor__c', (String) row.get('primaryCounselor'));
             putDateIfValid(opp, 'Admitted_Date__c', (String) row.get('admittedDate'));
             putDateIfValid(opp, 'Discharge_Date__c', (String) row.get('dischargeDate'));
             putIfNotBlank(opp, 'Program__c', (String) row.get('program'));
+            putIfNotBlank(opp, 'Facility_Approved__c', (String) row.get('admissionServiceFacility'));
             putIfNotBlank(opp, 'Admitted_Level_of_Care__c', (String) row.get('admittedLevelOfCare'));
-            putIfNotBlank(opp, 'Facility_Approved__c', (String) row.get('currentServiceFacilityName'));
+            putIfNotBlank(opp, 'Current_Service_Facility__c', (String) row.get('currentServiceFacilityName'));
+            putIfNotBlank(opp, 'Current_Level_Of_Care__c', (String) row.get('currentLevelOfCare'));
             putIfNotBlank(opp, 'Anticipated_Realm__c', (String) row.get('realm'));
 
             toUpdate.add(opp);

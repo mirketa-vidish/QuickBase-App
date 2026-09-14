@@ -1,21 +1,23 @@
 import LightningModal from 'lightning/modal';
 import updateAdmissions from '@salesforce/apex/AdmissionImportController.updateAdmissions';
 
-// CSV header (trimmed, lower-cased) -> internal row key. Headers not listed
-// here (Mri, Primary Counselor, Admission Service Facility, Current Level
-// Of Care) are present in the sample file but have no Salesforce field in
-// the mapping sheet, so they're intentionally ignored on import.
+// CSV header (trimmed, lower-cased) -> internal row key, matching the
+// AdmissionImportController Apex doc comment's column -> field mapping.
 const HEADER_MAP = {
     'opportunity legacy id': 'opportunityId',
     'mbc id': 'mbcId',
+    mri: 'mri',
     'patient name': 'patientName',
     'patient first name': 'clientFirstName',
     'patient last name': 'clientLastName',
+    'primary counselor': 'primaryCounselor',
     'admission date': 'admittedDate',
     'discharge date': 'dischargeDate',
     program: 'program',
+    'admission service facility': 'admissionServiceFacility',
     'admission level of care': 'admittedLevelOfCare',
     'current service facility name': 'currentServiceFacilityName',
+    'current level of care': 'currentLevelOfCare',
     realm: 'realm'
 };
 const DATE_FIELDS = new Set(['admittedDate', 'dischargeDate']);
