@@ -40,7 +40,10 @@ public with sharing class AdmissionDatatableController {
         'currentLevelOfCare' => 'Current_Level_Of_Care__c',
         'realm' => 'Anticipated_Realm__c',
         'primaryCounselor' => 'Primary_Counselor__c',
-        'combinedTextSupervisor' => 'LastModifiedBy.Name',
+        // combinedTextSupervisor is sourced from the most-recent Review__c
+        // (Combined_Text_Supervisor__c), not an Opportunity field, so it is
+        // not available for ORDER BY here - sorting on this column falls back
+        // to the default (Admitted_Date__c DESC).
         'mri' => 'MRI__c'
     };
 
@@ -57,7 +60,8 @@ public with sharing class AdmissionDatatableController {
         'currentLevelOfCare' => 'Current_Level_Of_Care__c',
         'realm' => 'Anticipated_Realm__c',
         'primaryCounselor' => 'Primary_Counselor__c',
-        'combinedTextSupervisor' => 'LastModifiedBy.Name',
+        // combinedTextSupervisor comes from Review__c, not Opportunity -
+        // not filterable here via SOQL LIKE on the Opportunity query.
         'mri' => 'MRI__c'
     };
 
@@ -171,9 +175,9 @@ public with sharing class AdmissionDatatableController {
         String dataQuery = 'SELECT Id, MBC_ID__c, Admitted_Date__c, Discharge_Date__c, Status__c, ' +
             'Client_First_Name__c, Client_Middle_Name__c, Client_Last_Name__c, ' +
             'Program__c, Current_Service_Facility__c, Current_Level_Of_Care__c, Anticipated_Realm__c, ' +
-            'Primary_Counselor__c, LastModifiedBy.Name, MRI__c ' +
+            'Primary_Counselor__c, MRI__c ' +
             'FROM Opportunity' + whereClause +
-            ' ORDER BY ' + orderByField + ' ' + orderByDir +
+            ' ORDER BY ' + orderByField + ' ' + orderByDir + ' NULLS LAST' +
             ' LIMIT :limitSize OFFSET :offsetSize';
 
         List<SObject> opps = Database.queryWithBinds(dataQuery, dataBinds, AccessLevel.USER_MODE);
@@ -194,13 +198,32 @@ public with sharing class AdmissionDatatableController {
             row.currentLevelOfCare = toStringValue(o.get('Current_Level_Of_Care__c'));
             row.realm = toStringValue(o.get('Anticipated_Realm__c'));
             row.primaryCounselor = toStringValue(o.get('Primary_Counselor__c'));
-            row.combinedTextSupervisor = getRelatedName(o, 'LastModifiedBy');
+            // combinedTextSupervisor is populated below from the most-recent
+            // Review__c after the review-counts subquery runs.
             row.mri = toStringValue(o.get('MRI__c'));
             rows.add(row);
             rowById.put(row.id, row);
         }
 
         if (!rowById.isEmpty()) {
+            // Pull the Combined_Text_Supervisor__c from the most-recent
+            // Review__c per Admission and stamp it on the row. "Most recent"
+            // is defined as the highest CreatedDate; ties broken by Id DESC.
+            String supervisorQuery = 'SELECT ' + REVIEW_ADMISSION_LOOKUP + ', Combined_Text_Supervisor__c ' +
+                'FROM ' + REVIEW_OBJECT +
+                ' WHERE ' + REVIEW_ADMISSION_LOOKUP + ' IN :admissionIds ' +
+                'ORDER BY CreatedDate DESC, Id DESC';
+            Map<String, Object> supervisorBinds = new Map<String, Object>{ 'admissionIds' => rowById.keySet() };
+            List<SObject> supervisorRows = Database.queryWithBinds(supervisorQuery, supervisorBinds, AccessLevel.SYSTEM_MODE);
+            // Walk in descending order so the first hit per Admission is the most recent.
+            Set<Id> seen = new Set<Id>();
+            for (SObject sr : supervisorRows) {
+                Id admId = (Id) sr.get(REVIEW_ADMISSION_LOOKUP);
+                if (seen.add(admId) && rowById.containsKey(admId)) {
+                    rowById.get(admId).combinedTextSupervisor = toStringValue(sr.get('Combined_Text_Supervisor__c'));
+                }
+            }
+
             String reviewQuery = 'SELECT ' + REVIEW_ADMISSION_LOOKUP + ' admissionId, RecordType.DeveloperName rtName, COUNT(Id) cnt ' +
                 'FROM ' + REVIEW_OBJECT +
                 ' WHERE ' + REVIEW_ADMISSION_LOOKUP + ' IN :admissionIds ' +

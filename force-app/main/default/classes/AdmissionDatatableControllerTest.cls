@@ -19,7 +19,10 @@ private class AdmissionDatatableControllerTest {
         return (Id) opp.get('Id');
     }
 
-    private static void createReview(Id admissionId, String recordTypeDeveloperName) {
+    // supervisorName sets Supervisor__c - the before-insert trigger reads THIS
+    // field to compute Combined_Text_Supervisor__c. Setting Combined_Text_Supervisor__c
+    // directly in tests has no effect because the trigger always overwrites it.
+    private static void createReview(Id admissionId, String recordTypeDeveloperName, String supervisorName) {
         Schema.SObjectType reviewType = Schema.getGlobalDescribe().get('Review__c');
         Map<String, Schema.RecordTypeInfo> rtInfos = reviewType.getDescribe().getRecordTypeInfosByDeveloperName();
         if (!rtInfos.containsKey(recordTypeDeveloperName)) {
@@ -28,15 +31,18 @@ private class AdmissionDatatableControllerTest {
         SObject review = reviewType.newSObject();
         review.put('RecordTypeId', rtInfos.get(recordTypeDeveloperName).getRecordTypeId());
         review.put('Opportunity__c', admissionId);
+        if (String.isNotBlank(supervisorName)) {
+            review.put('Supervisor__c', supervisorName);
+        }
         insert review;
     }
 
     @isTest
     static void testGetAdmissionsReturnsRowsWithReviewCounts() {
         Id admissionId = createAdmission('A-1001', 'Active');
-        createReview(admissionId, 'Admission_Review');
-        createReview(admissionId, 'Admission_Review');
-        createReview(admissionId, 'Ongoing_Review');
+        createReview(admissionId, 'Admission_Review', null);
+        createReview(admissionId, 'Admission_Review', null);
+        createReview(admissionId, 'Ongoing_Review', null);
 
         Test.startTest();
         AdmissionDatatableController.TableResult result = AdmissionDatatableController.getAdmissions(
@@ -115,5 +121,46 @@ private class AdmissionDatatableControllerTest {
 
         System.assertEquals(1, rows.size());
         System.assertEquals(secondId, rows[0].id);
+    }
+
+    @isTest
+    static void testCombinedTextSupervisorFromMostRecentReview() {
+        Id admissionId = createAdmission('A-6001', 'Active');
+        // Supervisor__c is a restricted picklist - must use a real org value.
+        // The trigger joins ALL unique Supervisor__c values across siblings with
+        // '; ' and stamps Combined_Text_Supervisor__c. Using the same value for
+        // both Reviews so the result is a single clean name to assert against.
+        createReview(admissionId, 'Admission_Review', 'John Dyben');
+        createReview(admissionId, 'Ongoing_Review',   'John Dyben');
+
+        Test.startTest();
+        AdmissionDatatableController.TableResult result = AdmissionDatatableController.getAdmissions(
+            null, 'admissionId', 'ASC', 1, 10
+        );
+        Test.stopTest();
+
+        System.assertEquals(1, result.records.size());
+        AdmissionDatatableController.AdmissionRow row = result.records[0];
+        // The trigger stamps Combined_Text_Supervisor__c = 'John Dyben' on every
+        // Review for this Admission; the controller picks it from the most recent one.
+        System.assertEquals('John Dyben', row.combinedTextSupervisor,
+            'Expected supervisor stamped by trigger from Supervisor__c field');
+    }
+
+    @isTest
+    static void testCombinedTextSupervisorIsNullWhenNoReviewsExist() {
+        createAdmission('A-7001', 'Active');
+        // No reviews created - supervisor column should be blank.
+
+        Test.startTest();
+        AdmissionDatatableController.TableResult result = AdmissionDatatableController.getAdmissions(
+            null, null, null, null, null
+        );
+        Test.stopTest();
+
+        System.assertEquals(1, result.records.size());
+        System.assertNotEquals(null, result.records[0], 'Row should still be returned');
+        System.assertEquals(null, result.records[0].combinedTextSupervisor,
+            'Supervisor should be null when no Reviews exist');
     }
 }
