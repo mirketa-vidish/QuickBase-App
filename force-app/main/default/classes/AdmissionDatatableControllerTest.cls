@@ -56,10 +56,10 @@ private class AdmissionDatatableControllerTest {
     @isTest
     static void testGetAdmissionsAppliesTextAndDateFilters() {
         createAdmission('A-2001', 'Active');
-        createAdmission('A-2002', 'Discharged');
+        Id secondId = createAdmission('A-2002', 'Discharged');
 
         Map<String, String> filters = new Map<String, String>{
-            'admissionId' => 'A-2002',
+            'admissionId' => secondId,
             'admissionDate' => String.valueOf(Date.today())
         };
 
@@ -70,7 +70,7 @@ private class AdmissionDatatableControllerTest {
         Test.stopTest();
 
         System.assertEquals(1, result.totalRecords);
-        System.assertEquals('A-2002', result.records[0].admissionId);
+        System.assertEquals(secondId, result.records[0].id);
     }
 
     @isTest
@@ -103,9 +103,9 @@ private class AdmissionDatatableControllerTest {
     @isTest
     static void testExportAdmissionsAppliesFilters() {
         createAdmission('A-5001', 'Active');
-        createAdmission('A-5002', 'Discharged');
+        Id secondId = createAdmission('A-5002', 'Discharged');
 
-        Map<String, String> filters = new Map<String, String>{ 'admissionId' => 'A-5002' };
+        Map<String, String> filters = new Map<String, String>{ 'admissionId' => secondId };
 
         Test.startTest();
         List<AdmissionDatatableController.AdmissionRow> rows = AdmissionDatatableController.exportAdmissions(
@@ -114,6 +114,6 @@ private class AdmissionDatatableControllerTest {
         Test.stopTest();
 
         System.assertEquals(1, rows.size());
-        System.assertEquals('A-5002', rows[0].admissionId);
+        System.assertEquals(secondId, rows[0].id);
     }
 }
